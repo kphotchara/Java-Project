@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.scene.control.*;
 
 /**
  * Application class for Solitaire. The responsibility of this class is limited
