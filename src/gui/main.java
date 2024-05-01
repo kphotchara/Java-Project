@@ -1,6 +1,7 @@
 package gui;
 
 import ai.GreedyPlayingStrategy;
+import javafx.scene.control.Button;
 import model.FoundationPile;
 import model.GameModel;
 import model.TableauPile;
@@ -19,18 +20,18 @@ import javafx.scene.control.*;
  * gesture handling logic is handled by its composed elements, which act
  * as observers of the game model.
  */
-public class Solitaire extends Application
+public class main extends Application
 {
 	private static final int WIDTH = 680;
 	private static final int HEIGHT = 500;
 	private static final int MARGIN_OUTER = 10;
 	private static final String TITLE = "Solitaire";
-	private static final String VERSION = "1.1";
+	private static final String VERSION = "8.8.8";
 
 	/**
 	 * Application head.
 	 */
-	public Solitaire() {}
+	public main() {}
     
 	/**
 	 * Launches the application.
@@ -55,20 +56,20 @@ public class Solitaire extends Application
     	final GameModel model = new GameModel(new GreedyPlayingStrategy());
     	DeckView deckView = new DeckView(model);
         DiscardPileView discardPileView = new DiscardPileView(model);
-
-        root.add(deckView, 0, 0);
-        root.add(discardPileView, 1, 0);
-                
+		root.add(new Button(), 0, 0);
+        root.add(deckView, 0, 1);
+        root.add(discardPileView, 1, 1);
+		
         for( FoundationPile index : FoundationPile.values() )
         {
-        	root.add(new SuitStack(model, index), 3+index.ordinal(), 0);
+        	root.add(new SuitStack(model, index), 3+index.ordinal(), 1);
         }
       
         for( TableauPile index : TableauPile.values() )
         {
-        	root.add(new CardPileView(model, index), index.ordinal(), 1);
+        	root.add(new CardPileView(model, index), index.ordinal(), 2);
         }
-        
+
         root.setOnKeyTyped(new EventHandler<KeyEvent>()
 		{
 
@@ -79,7 +80,7 @@ public class Solitaire extends Application
 				{
 					model.tryToAutoPlay();
 				}
-				else if( pEvent.getCharacter().equals("\b"))
+				else if( pEvent.getCharacter().equals("u"))
 				{
 					model.undoLast();
 				}
