@@ -1,9 +1,11 @@
 package gui;
 
 import ai.GreedyPlayingStrategy;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Paint;
 import model.FoundationPile;
 import model.GameModel;
 import model.TableauPile;
@@ -29,7 +31,7 @@ public class main extends Application
 	private static final int MARGIN_OUTER = 10;
 	private static final String TITLE = "Solitaire";
 	private static final String VERSION = "8.8.8";
-
+	boolean soundPlaying = true;
 	SoundPlayer gameMusic = new SoundPlayer("res/background.wav");
 
 	/**
@@ -52,7 +54,7 @@ public class main extends Application
 		gameMusic.setLoop();
 		gameMusic.startPlay();
 
-		pPrimaryStage.setTitle(TITLE + " " + VERSION); 
+		pPrimaryStage.setTitle(TITLE + " " + VERSION);
 
         GridPane root = new GridPane();
         root.setStyle("-fx-background-color: green;");
@@ -64,9 +66,23 @@ public class main extends Application
     	DeckView deckView = new DeckView(model);
         DiscardPileView discardPileView = new DiscardPileView(model);
 		Button giveUpBtn = new Button("give up");
+		Button soundBtn = new Button();
 		giveUpBtn.setMaxSize(90,30);
 		giveUpBtn.setMinSize(90,30);
 		giveUpBtn.setStyle("-fx-background-color: white;");
+		soundBtn.setGraphic(new ImageView("icons8-sound-30.png"));
+		soundBtn.setAlignment(Pos.CENTER);
+
+		soundBtn.setStyle("-fx-background-color: transparent, transparent, transparent, transparent, transparent;" +
+				"    -fx-pref-height: 30;" +
+				"    -fx-pref-width: 30;" +
+				"    -fx-min-height: 30;" +
+				"    -fx-min-width: 30;" +
+				"    -fx-max-height: 30;" +
+				"    -fx-max-width: 30;");
+
+		root.add(soundBtn, 0, 0);
+		GridPane.setMargin(soundBtn, new Insets(0, 0, 0, 6));
 		root.add(giveUpBtn, 6, 0);
         root.add(deckView, 0, 1);
         root.add(discardPileView, 1, 1);
@@ -120,8 +136,30 @@ public class main extends Application
 				giveUpBtn.setText("give up");
 			}
 		});
+
+		soundBtn.setOnMousePressed(new EventHandler<MouseEvent>()
+		{
+			@Override
+			public void handle(MouseEvent pEvent)
+			{
+				if(soundPlaying){
+					gameMusic.stopPlay();
+					soundBtn.setGraphic(new ImageView("icons8-mute-30.png"));
+				}
+				else {
+					gameMusic.startPlay();
+					soundBtn.setGraphic(new ImageView("icons8-sound-30.png"));
+				}
+				soundPlaying = !soundPlaying;
+
+			}
+		});
+
+
         pPrimaryStage.setResizable(false);
         pPrimaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
         pPrimaryStage.show();
+
     }
+
 }
