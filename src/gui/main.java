@@ -70,7 +70,13 @@ public class main extends Application
 		giveUpBtn.setMaxSize(90,30);
 		giveUpBtn.setMinSize(90,30);
 		giveUpBtn.setStyle("-fx-background-color: white;");
-		soundBtn.setGraphic(new ImageView("icons8-sound-30.png"));
+		ImageView soundImg = new ImageView("icons8-sound-50.png");
+		ImageView muteImg = new ImageView("icons8-mute-50.png");
+		soundImg.setFitWidth(30);
+		soundImg.setFitHeight(30);
+		muteImg.setFitWidth(30);
+		muteImg.setFitHeight(30);
+		soundBtn.setGraphic(soundImg);
 		soundBtn.setAlignment(Pos.CENTER);
 
 		soundBtn.setStyle("-fx-background-color: transparent, transparent, transparent, transparent, transparent;" +
@@ -144,11 +150,11 @@ public class main extends Application
 			{
 				if(soundPlaying){
 					gameMusic.stopPlay();
-					soundBtn.setGraphic(new ImageView("icons8-mute-30.png"));
+					soundBtn.setGraphic(muteImg);
 				}
 				else {
 					gameMusic.startPlay();
-					soundBtn.setGraphic(new ImageView("icons8-sound-30.png"));
+					soundBtn.setGraphic(soundImg);
 				}
 				soundPlaying = !soundPlaying;
 
