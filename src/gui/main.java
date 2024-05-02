@@ -2,6 +2,7 @@ package gui;
 
 import ai.GreedyPlayingStrategy;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import model.FoundationPile;
 import model.GameModel;
 import model.TableauPile;
@@ -51,7 +52,7 @@ public class main extends Application
 		gameMusic.startPlay();
 
 		pPrimaryStage.setTitle(TITLE + " " + VERSION); 
-           
+
         GridPane root = new GridPane();
         root.setStyle("-fx-background-color: green;");
         root.setHgap(MARGIN_OUTER);
@@ -61,7 +62,9 @@ public class main extends Application
     	final GameModel model = new GameModel(new GreedyPlayingStrategy());
     	DeckView deckView = new DeckView(model);
         DiscardPileView discardPileView = new DiscardPileView(model);
-		root.add(new Button(), 0, 0);
+		Button giveUpBtn = new Button("give up");
+
+		root.add(giveUpBtn, 0, 0);
         root.add(deckView, 0, 1);
         root.add(discardPileView, 1, 1);
 		
@@ -90,6 +93,13 @@ public class main extends Application
 					model.undoLast();
 				}
 				pEvent.consume();
+			}
+		});
+
+		giveUpBtn.setOnMouseReleased(new EventHandler<MouseEvent>(){
+			@Override
+			public void handle(MouseEvent pEvent){
+				model.reset();
 			}
 		});
         
