@@ -28,6 +28,8 @@ public class main extends Application
 	private static final String TITLE = "Solitaire";
 	private static final String VERSION = "8.8.8";
 
+	SoundPlayer gameMusic = new SoundPlayer("res/background.wav");
+
 	/**
 	 * Application head.
 	 */
@@ -43,8 +45,10 @@ public class main extends Application
     }
 	    
     @Override
-    public void start(Stage pPrimaryStage) 
+    public void start(Stage pPrimaryStage)
     {
+		gameMusic.startPlay();
+
 		pPrimaryStage.setTitle(TITLE + " " + VERSION); 
            
         GridPane root = new GridPane();
