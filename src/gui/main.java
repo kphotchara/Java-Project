@@ -47,6 +47,7 @@ public class main extends Application
     @Override
     public void start(Stage pPrimaryStage)
     {
+		gameMusic.setLoop();
 		gameMusic.startPlay();
 
 		pPrimaryStage.setTitle(TITLE + " " + VERSION); 

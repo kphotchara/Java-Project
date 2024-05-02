@@ -2,6 +2,7 @@ package gui;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import java.io.File;
 
@@ -19,6 +20,20 @@ public class SoundPlayer {
         catch(Exception e){
             System.out.println("Can't read the file");
             System.out.println(e);
+        }
+    }
+
+    public void setLoop(){
+        try{
+            mediaPlayer.setOnEndOfMedia(new Runnable() {
+                @Override
+                public void run() {
+                    mediaPlayer.seek(Duration.ZERO);
+                }
+            });
+        }
+        catch(Exception e){
+            System.out.println("Can't loop the music");
         }
     }
 

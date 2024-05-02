@@ -156,6 +156,8 @@ public class CardPileView extends StackPane implements GameModelListener
 				boolean success = false;
 				if(db.hasString()) 
 				{
+					SoundPlayer cardSound = new SoundPlayer("res/card.mp3");
+					cardSound.startPlay();
 					aModel.getCardMove(CardSerializer.deserializeBottomCard(db.getString()), aIndex).perform(); 
 					success = true;
 				}

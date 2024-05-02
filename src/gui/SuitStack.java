@@ -138,6 +138,8 @@ public class SuitStack extends StackPane implements GameModelListener
     			boolean success = false;
     			if(db.hasString()) 
     			{
+					SoundPlayer cardSound = new SoundPlayer("res/card.mp3");
+					cardSound.startPlay();
     				aModel.getCardMove(CardSerializer.deserializeBottomCard(pEvent.getDragboard().getString()), aIndex).perform();
     				success = true;
     			}
