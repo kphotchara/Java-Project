@@ -3,6 +3,7 @@ package gui;
 import ai.GreedyPlayingStrategy;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Paint;
 import model.FoundationPile;
 import model.GameModel;
 import model.TableauPile;
@@ -23,7 +24,7 @@ import javafx.scene.control.*;
  */
 public class main extends Application
 {
-	private static final int WIDTH = 680;
+	private static final int WIDTH = 700;
 	private static final int HEIGHT = 500;
 	private static final int MARGIN_OUTER = 10;
 	private static final String TITLE = "Solitaire";
@@ -63,8 +64,10 @@ public class main extends Application
     	DeckView deckView = new DeckView(model);
         DiscardPileView discardPileView = new DiscardPileView(model);
 		Button giveUpBtn = new Button("give up");
-
-		root.add(giveUpBtn, 0, 0);
+		giveUpBtn.setMaxSize(90,30);
+		giveUpBtn.setMinSize(90,30);
+		giveUpBtn.setStyle("-fx-background-color: white;");
+		root.add(giveUpBtn, 6, 0);
         root.add(deckView, 0, 1);
         root.add(discardPileView, 1, 1);
 		
@@ -102,7 +105,21 @@ public class main extends Application
 				model.reset();
 			}
 		});
-        
+		giveUpBtn.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				giveUpBtn.setStyle("-fx-background-color: #E1E1E1; -fx-text-fill: #E33535");
+				giveUpBtn.setText("don't give up");
+			}
+		});
+		// 鼠标移出
+		giveUpBtn.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				giveUpBtn.setStyle("-fx-background-color: white;");
+				giveUpBtn.setText("give up");
+			}
+		});
         pPrimaryStage.setResizable(false);
         pPrimaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
         pPrimaryStage.show();
