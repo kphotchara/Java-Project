@@ -32,7 +32,7 @@ public class main extends Application
 	private static final String TITLE = "Solitaire";
 	private static final String VERSION = "8.8.8";
 	boolean soundPlaying = true;
-	SoundPlayer gameMusic = new SoundPlayer("res/background.wav");
+	SoundPlayer gameMusic = new SoundPlayer(ClassLoader.getSystemResource("background.wav").toString());
 
 	/**
 	 * Application head.

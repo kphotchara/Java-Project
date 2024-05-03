@@ -39,7 +39,7 @@ class DeckView extends HBox implements GameModelListener
     		@Override
     		public void handle(MouseEvent pEvent) 
     		{
-				SoundPlayer cardSound = new SoundPlayer("res/card.mp3");
+				SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("card.mp3").toString());
 				cardSound.startPlay();
 				((Button)pEvent.getSource()).setStyle(BUTTON_STYLE_PRESSED);
     		}            

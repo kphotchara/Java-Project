@@ -14,7 +14,7 @@ public class SoundPlayer {
     public SoundPlayer(String musicFileURL){
         try{
             musicFile = musicFileURL;
-            sound = new Media(new File(musicFile).toURI().toString());
+            sound = new Media(new File(musicFile).toString());
             mediaPlayer = new MediaPlayer(sound);
         }
         catch(Exception e){
