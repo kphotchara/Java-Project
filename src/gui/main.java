@@ -70,8 +70,8 @@ public class main extends Application
 		giveUpBtn.setMaxSize(90,30);
 		giveUpBtn.setMinSize(90,30);
 		giveUpBtn.setStyle("-fx-background-color: white;");
-		ImageView soundImg = new ImageView("icons8-sound-50.png");
-		ImageView muteImg = new ImageView("icons8-mute-50.png");
+		ImageView soundImg = new ImageView(ClassLoader.getSystemResource("icons8-sound-50.png").toString());
+		ImageView muteImg = new ImageView(ClassLoader.getSystemResource("icons8-mute-50.png").toString());
 		soundImg.setFitWidth(30);
 		soundImg.setFitHeight(30);
 		muteImg.setFitWidth(30);
