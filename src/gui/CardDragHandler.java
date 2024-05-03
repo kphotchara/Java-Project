@@ -35,6 +35,7 @@ public class CardDragHandler implements EventHandler<MouseEvent>
 		Dragboard db = aImageView.startDragAndDrop(TransferMode.ANY);
         CLIPBOARD_CONTENT.putString(CardSerializer.serialize(aCard));
         db.setContent(CLIPBOARD_CONTENT);
+		db.setDragView(aImageView.getImage());
         pMouseEvent.consume();
 	}
 }
