@@ -61,7 +61,8 @@ public class main extends Application
 		pPrimaryStage.setTitle(TITLE + " " + VERSION);
 
 		VBox homepageLayout = new VBox();
-		homepageLayout.setStyle("-fx-background-color: white;");
+		BackgroundSize backgroundSize = new BackgroundSize(700, 600, false, false, false, true);
+		homepageLayout.setBackground(new Background(new BackgroundImage(new Image("homepage-background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize)));;
 		homepageLayout.setSpacing(10);
 		homepageLayout.setPadding(new Insets(20));
 		homepageLayout.setAlignment(Pos.CENTER);
@@ -73,7 +74,6 @@ public class main extends Application
 		homepageLayout.getChildren().addAll(logo, startBtn);
 
         GridPane root = new GridPane();
-		BackgroundSize backgroundSize = new BackgroundSize(700, 600, false, false, false, true);
 		root.setBackground(new Background(new BackgroundImage(new Image("background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize)));
         root.setHgap(MARGIN_OUTER);
         root.setVgap(MARGIN_OUTER);
@@ -181,7 +181,7 @@ public class main extends Application
 		});
 
 		startBtn.setOnMouseEntered(e -> {
-			startBtn.setStyle("-fx-background-color: white; -fx-text-fill: #FB688E; -fx-font-size: 16px; -fx-border-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-min-width: 120px; -fx-min-height: 40px;");
+			startBtn.setStyle("-fx-background-color: white; -fx-background-radius: 5em; -fx-text-fill: #FB688E; -fx-font-size: 16px; -fx-border-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-min-width: 120px; -fx-min-height: 40px;");
 		});
 
 		startBtn.setOnMouseExited(e -> {
