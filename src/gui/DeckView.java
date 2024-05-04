@@ -27,7 +27,7 @@ class DeckView extends HBox implements GameModelListener
 	
     private final GameModel aModel;
 
-	SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.wav").toString());
+	SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("flipcard.wav").toString());
 
 	DeckView(GameModel pModel)
 	{

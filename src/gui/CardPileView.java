@@ -27,7 +27,7 @@ public class CardPileView extends StackPane implements GameModelListener
 	private TableauPile aIndex;
 	private final GameModel aModel;
 
-	SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.wav").toString());
+	SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("card.wav").toString());
 	
 	CardPileView(GameModel pModel, TableauPile pIndex)
 	{
@@ -168,7 +168,7 @@ public class CardPileView extends StackPane implements GameModelListener
 				}
 
 				pEvent.setDropCompleted(success);
-				cardSound.setVolume(1.00);
+				cardSound.setVolume(1.0);
 				cardSound.startPlay();
 				pEvent.consume();
 			}
