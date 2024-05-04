@@ -60,6 +60,18 @@ public class main extends Application
 
 		pPrimaryStage.setTitle(TITLE + " " + VERSION);
 
+		VBox homepageLayout = new VBox();
+		homepageLayout.setStyle("-fx-background-color: white;");
+		homepageLayout.setSpacing(10);
+		homepageLayout.setPadding(new Insets(20));
+		homepageLayout.setAlignment(Pos.CENTER);
+
+		ImageView logo = new ImageView(new Image("logo.png"));
+		Button startBtn = new Button("Start Game");
+		startBtn.setStyle("-fx-background-color: #FB688E; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-border-radius: 5em; -fx-min-width: 120px; -fx-min-height: 40px;");
+
+		homepageLayout.getChildren().addAll(logo, startBtn);
+
         GridPane root = new GridPane();
         root.setBackground(new Background(new BackgroundImage(new Image("background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         root.setHgap(MARGIN_OUTER);
@@ -136,7 +148,7 @@ public class main extends Application
 				catch (InterruptedException ie){
 					Thread.currentThread().interrupt();
 				}
-;
+
 
 			}
 		});
@@ -166,6 +178,14 @@ public class main extends Application
 			}
 		});
 
+		startBtn.setOnMouseEntered(e -> {
+			startBtn.setStyle("-fx-background-color: white; -fx-text-fill: #FB688E; -fx-font-size: 16px; -fx-border-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-min-width: 120px; -fx-min-height: 40px;");
+		});
+
+		startBtn.setOnMouseExited(e -> {
+			startBtn.setStyle("-fx-background-color: #FB688E; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-border-radius: 5em; -fx-min-width: 120px; -fx-min-height: 40px;");
+		});
+
 		soundBtn.setOnMousePressed(new EventHandler<MouseEvent>()
 		{
 			@Override
@@ -188,9 +208,13 @@ public class main extends Application
 			}
 		});
 
+		startBtn.setOnAction(e -> {
+			pPrimaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
+		});
+
 
         pPrimaryStage.setResizable(false);
-        pPrimaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
+        pPrimaryStage.setScene(new Scene(homepageLayout, WIDTH, HEIGHT));
         pPrimaryStage.show();
 
     }
