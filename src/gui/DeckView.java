@@ -43,7 +43,7 @@ class DeckView extends HBox implements GameModelListener
     		{
 				cardSound.startPlay();
 				((Button)pEvent.getSource()).setStyle(BUTTON_STYLE_PRESSED);
-    		}            
+    		}
     	});
 
     	button.setOnMouseReleased(new EventHandler<MouseEvent>() 
@@ -58,6 +58,7 @@ class DeckView extends HBox implements GameModelListener
     			}
     			else
     			{
+					cardSound.stopPlay();
     				aModel.getDiscardMove().perform();
     			}
     		}            

@@ -111,6 +111,7 @@ public class CardPileView extends StackPane implements GameModelListener
 				{
 					if( aModel.isLegalMove(CardSerializer.deserializeBottomCard(pEvent.getDragboard().getString()), aIndex) )
 					{
+						cardSound.startPlay();
 						pEvent.acceptTransferModes(TransferMode.MOVE);
 					}
 				}
@@ -144,6 +145,7 @@ public class CardPileView extends StackPane implements GameModelListener
 			{
 				pImageView.setEffect(null);
 				pEvent.consume();
+				cardSound.stopPlay();
 			}
 		};
 	}
@@ -155,7 +157,6 @@ public class CardPileView extends StackPane implements GameModelListener
 			@Override
 			public void handle(DragEvent pEvent)
 			{
-				cardSound.startPlay();
 				Dragboard db = pEvent.getDragboard();
 				boolean success = false;
 				if(db.hasString()) 
