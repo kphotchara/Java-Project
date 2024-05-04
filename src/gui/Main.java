@@ -31,65 +31,65 @@ public class Main extends Application
 	private static final String TITLE = "Solitaire";
 	private static final String VERSION = "8.8.8";
 	private boolean soundPlaying = true;
-
 	private SoundPlayer gameMusic = new SoundPlayer(ClassLoader.getSystemResource("background.mp3").toString());
 	private SoundPlayer giveUpSound = new SoundPlayer(ClassLoader.getSystemResource("gameover.wav").toString());
-	private SoundPlayer buttonSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.mp3").toString());
+	private SoundPlayer btnSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.mp3").toString());
 	private SoundPlayer homePageSound = new SoundPlayer(ClassLoader.getSystemResource("homepage.mp3").toString());
 
 	/**
 	 * Application head.
 	 */
 	public Main() {}
-    
+
 	/**
 	 * Launches the application.
 	 * @param pArgs This program takes no argument.
 	 */
-	public static void main(String[] pArgs) 
+	public static void main(String[] pArgs)
 	{
-        launch(pArgs);
-    }
-	    
-    @Override
-    public void start(Stage pPrimaryStage)
+		launch(pArgs);
+	}
+
+	@Override
+	public void start(Stage pPrimaryStage)
 	{
 		homePageSound.setVolume(1.00);
 		homePageSound.setLoop();
 		homePageSound.startPlay();
+//		gameMusic.setVolume(0.45);
+//		gameMusic.setLoop();
+//		gameMusic.startPlay();
 
 		pPrimaryStage.setTitle(TITLE + " " + VERSION);
 
 		VBox homepageLayout = new VBox();
 		BackgroundSize backgroundSize = new BackgroundSize(700, 600, false, false, false, true);
-		homepageLayout.setBackground(new Background(new BackgroundImage(new Image("homepage-background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize)));
+		homepageLayout.setBackground(new Background(new BackgroundImage(new Image("homepage-background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize)));;
 		homepageLayout.setSpacing(10);
 		homepageLayout.setPadding(new Insets(20));
 		homepageLayout.setAlignment(Pos.CENTER);
 
 		ImageView logo = new ImageView(new Image("logo.png"));
-		Button startButton = new Button("Start Game");
-		startButton.setStyle("-fx-background-color: #FB688E; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-border-radius: 5em; -fx-min-width: 120px; -fx-min-height: 40px;");
+		Button startBtn = new Button("Start Game");
+		startBtn.setStyle("-fx-background-color: #FB688E; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-border-radius: 5em; -fx-min-width: 120px; -fx-min-height: 40px;");
 
-		homepageLayout.getChildren().addAll(logo, startButton);
+		homepageLayout.getChildren().addAll(logo, startBtn);
 
-        GridPane root = new GridPane();
+		GridPane root = new GridPane();
 		root.setBackground(new Background(new BackgroundImage(new Image("background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize)));
-        root.setHgap(MARGIN_OUTER);
-        root.setVgap(MARGIN_OUTER);
-        root.setPadding(new Insets(MARGIN_OUTER));
-        
-    	final GameModel model = new GameModel();
-    	DeckView deckView = new DeckView(model);
-        DiscardPileView discardPileView = new DiscardPileView(model);
+		root.setHgap(MARGIN_OUTER);
+		root.setVgap(MARGIN_OUTER);
+		root.setPadding(new Insets(MARGIN_OUTER));
 
-		Button newGameButton = new Button("New Game");
-		Button soundButton = new Button();
-		Button undoButton = new Button();
-		newGameButton.setMaxSize(90,30);
-		newGameButton.setMinSize(90,30);
-		newGameButton.setStyle("-fx-background-color: white; -fx-text-fill: #36469B; -fx-background-radius: 5em;");
-
+		final GameModel model = new GameModel();
+		DeckView deckView = new DeckView(model);
+		DiscardPileView discardPileView = new DiscardPileView(model);
+		Button newGameBtn = new Button("New Game");
+		Button soundBtn = new Button();
+		Button undoBtn = new Button();
+		newGameBtn.setMaxSize(90,30);
+		newGameBtn.setMinSize(90,30);
+		newGameBtn.setStyle("-fx-background-color: white; -fx-text-fill: #36469B; -fx-background-radius: 5em;");
 		ImageView soundImg = new ImageView(ClassLoader.getSystemResource("icons8-sound-50.png").toString());
 		ImageView muteImg = new ImageView(ClassLoader.getSystemResource("icons8-mute-50.png").toString());
 		ImageView soundImgHover = new ImageView(ClassLoader.getSystemResource("icons8-sound-50-hover.png").toString());
@@ -100,7 +100,6 @@ public class Main extends Application
 		soundImg.setFitHeight(30);
 		muteImg.setFitWidth(30);
 		muteImg.setFitHeight(30);
-
 		soundImgHover.setFitWidth(30);
 		soundImgHover.setFitHeight(30);
 		muteImgHover.setFitWidth(30);
@@ -110,20 +109,20 @@ public class Main extends Application
 
 		undoImgHover.setFitWidth(30);
 		undoImgHover.setFitHeight(30);
-		soundButton.setGraphic(soundImg);
-		soundButton.setAlignment(Pos.CENTER);
-		undoButton.setGraphic(undoImg);
-		undoButton.setAlignment(Pos.CENTER);
-		GridPane.setHalignment(undoButton, HPos.RIGHT);
+		soundBtn.setGraphic(soundImg);
+		soundBtn.setAlignment(Pos.CENTER);
+		undoBtn.setGraphic(undoImg);
+		undoBtn.setAlignment(Pos.CENTER);
+		GridPane.setHalignment(undoBtn, HPos.RIGHT);
 
-		soundButton.setStyle("-fx-background-color: transparent, transparent, transparent, transparent, transparent;" +
+		soundBtn.setStyle("-fx-background-color: transparent, transparent, transparent, transparent, transparent;" +
 				"    -fx-pref-height: 30;" +
 				"    -fx-pref-width: 30;" +
 				"    -fx-min-height: 30;" +
 				"    -fx-min-width: 30;" +
 				"    -fx-max-height: 30;" +
 				"    -fx-max-width: 30;");
-		undoButton.setStyle("-fx-background-color: transparent, transparent, transparent, transparent, transparent;" +
+		undoBtn.setStyle("-fx-background-color: transparent, transparent, transparent, transparent, transparent;" +
 				"    -fx-pref-height: 30;" +
 				"    -fx-pref-width: 30;" +
 				"    -fx-min-height: 30;" +
@@ -131,26 +130,26 @@ public class Main extends Application
 				"    -fx-max-height: 30;" +
 				"    -fx-max-width: 30;");
 
-		root.add(soundButton, 0, 0);
-		root.add(undoButton, 5, 0);
-		GridPane.setMargin(soundButton, new Insets(0, 0, 0, 6));
-		root.add(newGameButton, 6, 0);
 
-        root.add(deckView, 0, 1);
-        root.add(discardPileView, 1, 1);
-		
-        for( FoundationPile index : FoundationPile.values() )
-        {
-        	root.add(new SuitStack(model, index), 3+index.ordinal(), 1);
-        }
-      
-        for( TableauPile index : TableauPile.values() )
-        {
-        	root.add(new CardPileView(model, index), index.ordinal(), 2);
-        }
+		root.add(soundBtn, 0, 0);
+		root.add(undoBtn, 5, 0);
+		GridPane.setMargin(soundBtn, new Insets(0, 0, 0, 6));
+		root.add(newGameBtn, 6, 0);
+		root.add(deckView, 0, 1);
+		root.add(discardPileView, 1, 1);
+
+		for( FoundationPile index : FoundationPile.values() )
+		{
+			root.add(new SuitStack(model, index), 3+index.ordinal(), 1);
+		}
+
+		for( TableauPile index : TableauPile.values() )
+		{
+			root.add(new CardPileView(model, index), index.ordinal(), 2);
+		}
 
 
-		newGameButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		newGameBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent pEvent) {
 				try {
@@ -166,7 +165,7 @@ public class Main extends Application
 			}
 		});
 
-		newGameButton.setOnMouseReleased(new EventHandler<MouseEvent>(){
+		newGameBtn.setOnMouseReleased(new EventHandler<MouseEvent>(){
 			@Override
 			public void handle(MouseEvent pEvent){
 				giveUpSound.startPlay();
@@ -175,62 +174,62 @@ public class Main extends Application
 			}
 		});
 
-		newGameButton.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
+		newGameBtn.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				newGameButton.setStyle("-fx-background-color: #FB688E; -fx-background-radius: 5em; -fx-text-fill: white;");
-				if(model.isCompleted())newGameButton.setText("again?");
-				else newGameButton.setText("don't give up");
+				newGameBtn.setStyle("-fx-background-color: #FB688E; -fx-background-radius: 5em; -fx-text-fill: white;");
+				if(model.isCompleted())newGameBtn.setText("again?");
+				else newGameBtn.setText("don't give up");
 			}
 		});
 
-		newGameButton.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
+		newGameBtn.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				newGameButton.setStyle("-fx-background-color: white; -fx-background-radius: 5em; -fx-text-fill: #36469B;");
-				newGameButton.setText("New Game");
+				newGameBtn.setStyle("-fx-background-color: white; -fx-background-radius: 5em; -fx-text-fill: #36469B;");
+				newGameBtn.setText("New Game");
 			}
 		});
 
-		undoButton.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
+		undoBtn.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				undoButton.setGraphic(undoImgHover);
+				undoBtn.setGraphic(undoImgHover);
 			}
 		});
 
-		undoButton.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
+		undoBtn.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				undoButton.setGraphic(undoImg);
+				undoBtn.setGraphic(undoImg);
 			}
 		});
 
-		soundButton.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
+		soundBtn.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				if(soundPlaying)soundButton.setGraphic(soundImgHover);
-				else soundButton.setGraphic(muteImgHover);
+				if(soundPlaying)soundBtn.setGraphic(soundImgHover);
+				else soundBtn.setGraphic(muteImgHover);
 			}
 		});
 
-		soundButton.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
+		soundBtn.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				if(soundPlaying)soundButton.setGraphic(soundImg);
-				else soundButton.setGraphic(muteImg);
+				if(soundPlaying)soundBtn.setGraphic(soundImg);
+				else soundBtn.setGraphic(muteImg);
 			}
 		});
 
-		startButton.setOnMouseEntered(e -> {
-			startButton.setStyle("-fx-background-color: white; -fx-background-radius: 5em; -fx-text-fill: #FB688E; -fx-font-size: 16px; -fx-border-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-min-width: 120px; -fx-min-height: 40px;");
+		startBtn.setOnMouseEntered(e -> {
+			startBtn.setStyle("-fx-background-color: white; -fx-background-radius: 5em; -fx-text-fill: #FB688E; -fx-font-size: 16px; -fx-border-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-min-width: 120px; -fx-min-height: 40px;");
 		});
 
-		startButton.setOnMouseExited(e -> {
-			startButton.setStyle("-fx-background-color: #FB688E; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-border-radius: 5em; -fx-min-width: 120px; -fx-min-height: 40px;");
+		startBtn.setOnMouseExited(e -> {
+			startBtn.setStyle("-fx-background-color: #FB688E; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-border-radius: 5em; -fx-min-width: 120px; -fx-min-height: 40px;");
 		});
 
-		soundButton.setOnMousePressed(new EventHandler<MouseEvent>()
+		soundBtn.setOnMousePressed(new EventHandler<MouseEvent>()
 		{
 			@Override
 			public void handle(MouseEvent pEvent)
@@ -239,39 +238,36 @@ public class Main extends Application
 					if(gameMusic.isPlaying()) {
 						gameMusic.stopPlay();
 					}
-					soundButton.setGraphic(muteImg);
+					soundBtn.setGraphic(muteImg);
 				}
 				else {
 					if(!gameMusic.isPlaying()) {
 						gameMusic.startPlay();
 					}
-					soundButton.setGraphic(soundImg);
+					soundBtn.setGraphic(soundImg);
 				}
 				soundPlaying = !soundPlaying;
 
 			}
 		});
 
-		startButton.setOnAction(e -> {
-			buttonSound.stopPlay();
-			buttonSound.startPlay();
-			undoButton.setOnAction(ee -> {
-				model.undoLast();
-			});
-
-			startButton.setOnAction(ee -> {
-				buttonSound.stopPlay();
-				buttonSound.startPlay();
-				pPrimaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
-				homePageSound.stopPlay();
-				gameMusic.startPlay();
-			});
-
-
-			pPrimaryStage.setResizable(false);
-			pPrimaryStage.setScene(new Scene(homepageLayout, WIDTH, HEIGHT));
-			pPrimaryStage.show();
+		undoBtn.setOnAction(e ->{
+			model.undoLast();
 		});
-    }
+
+		startBtn.setOnAction(e -> {
+			btnSound.stopPlay();
+			btnSound.startPlay();
+			pPrimaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
+			homePageSound.stopPlay();
+			gameMusic.startPlay();
+		});
+
+
+		pPrimaryStage.setResizable(false);
+		pPrimaryStage.setScene(new Scene(homepageLayout, WIDTH, HEIGHT));
+		pPrimaryStage.show();
+
+	}
 
 }

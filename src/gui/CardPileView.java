@@ -43,11 +43,11 @@ public class CardPileView extends StackPane implements GameModelListener
 	{
 		if( aModel.isVisibleInTableau(pCard) )
 		{
-			return CardImage.imageFor(pCard);
+			return CardImages.imageFor(pCard);
 		}
 		else
 		{
-			return CardImage.imageForBackOfCard();
+			return CardImages.imageForBackOfCard();
 		}
 	}
 	
@@ -59,7 +59,7 @@ public class CardPileView extends StackPane implements GameModelListener
 		CardStack stack = aModel.getTableauPile(aIndex);
 		if( stack.isEmpty() ) // this essentially acts as a spacer
 		{
-			ImageView image = new ImageView(CardImage.imageForBackOfCard());
+			ImageView image = new ImageView(CardImages.imageForBackOfCard());
 			image.setVisible(false);
 			getChildren().add(image);
 			return;

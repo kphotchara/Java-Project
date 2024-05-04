@@ -33,7 +33,7 @@ class DeckView extends HBox implements GameModelListener
 	{
 		aModel = pModel;
         final Button button = new Button();
-        button.setGraphic(new ImageView(CardImage.imageForBackOfCard()));
+        button.setGraphic(new ImageView(CardImages.imageForBackOfCard()));
         button.setStyle(BUTTON_STYLE_NORMAL);
 
     	button.setOnMousePressed(new EventHandler<MouseEvent>() 
@@ -72,8 +72,8 @@ class DeckView extends HBox implements GameModelListener
 	
 	private Canvas createNewGameImage()
 	{
-		double width = CardImage.imageForBackOfCard().getWidth();
-		double height = CardImage.imageForBackOfCard().getHeight();
+		double width = CardImages.imageForBackOfCard().getWidth();
+		double height = CardImages.imageForBackOfCard().getHeight();
 		Canvas canvas = new Canvas( width, height );
 		GraphicsContext context = canvas.getGraphicsContext2D();
 		
@@ -109,7 +109,7 @@ class DeckView extends HBox implements GameModelListener
 		}
 		else
 		{
-			((Button)getChildren().get(0)).setGraphic(new ImageView(CardImage.imageForBackOfCard()));
+			((Button)getChildren().get(0)).setGraphic(new ImageView(CardImages.imageForBackOfCard()));
 		}
 	}
 	
