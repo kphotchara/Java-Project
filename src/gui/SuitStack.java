@@ -90,6 +90,7 @@ public class SuitStack extends StackPane implements GameModelListener
     	    		CardStack transfer = CardSerializer.deserialize(pEvent.getDragboard().getString());
     	    		if( transfer.size() == 1 && aModel.isLegalMove(transfer.peek(), aIndex) )
     	    		{
+						cardSound.setVolume(1.00);
 						cardSound.startPlay();
     	    			pEvent.acceptTransferModes(TransferMode.MOVE);
     	    		}

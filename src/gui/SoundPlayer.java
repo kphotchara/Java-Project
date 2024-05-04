@@ -7,15 +7,17 @@ import javafx.util.Duration;
 import java.io.File;
 
 public class SoundPlayer {
-    String musicFile;
-    Media sound;
-    MediaPlayer mediaPlayer;
+    private String musicFile;
+    private Media sound;
+    private MediaPlayer mediaPlayer;
+    private boolean playingStatus;
 
     public SoundPlayer(String musicFileURL){
         try{
             musicFile = musicFileURL;
             sound = new Media(musicFile);
             mediaPlayer = new MediaPlayer(sound);
+            setPlayingStatus(false);
         }
         catch(Exception e){
             System.out.println("Can't read the file");
@@ -40,6 +42,7 @@ public class SoundPlayer {
     public void startPlay(){
         try{
             mediaPlayer.play();
+            setPlayingStatus(true);
         }
         catch(Exception e){
             System.out.println("Can't play the music");
@@ -49,5 +52,18 @@ public class SoundPlayer {
 
     public void stopPlay(){
         mediaPlayer.stop();
+        setPlayingStatus(false);
+    }
+
+    public void setVolume(double volume){
+        mediaPlayer.setVolume(volume);
+    }
+
+    public void setPlayingStatus(boolean status){
+        this.playingStatus = status;
+    }
+
+    public boolean isPlaying(){
+        return playingStatus;
     }
 }

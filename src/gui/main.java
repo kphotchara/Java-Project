@@ -33,7 +33,8 @@ public class main extends Application
 	private static final String TITLE = "Solitaire";
 	private static final String VERSION = "8.8.8";
 	boolean soundPlaying = true;
-	SoundPlayer gameMusic = new SoundPlayer(ClassLoader.getSystemResource("background.wav").toString());
+	SoundPlayer gameMusic = new SoundPlayer(ClassLoader.getSystemResource("background.mp3").toString());
+	SoundPlayer giveUpSound = new SoundPlayer(ClassLoader.getSystemResource("gameover.wav").toString());
 
 	/**
 	 * Application head.
@@ -52,6 +53,7 @@ public class main extends Application
     @Override
     public void start(Stage pPrimaryStage)
 	{
+		gameMusic.setVolume(0.45);
 		gameMusic.setLoop();
 		gameMusic.startPlay();
 
@@ -122,12 +124,31 @@ public class main extends Application
 			}
 		});
 
+		giveUpBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent pEvent) {
+				try {
+					Thread.sleep(2500);
+					giveUpSound.stopPlay();
+					gameMusic.startPlay();
+				}
+				catch (InterruptedException ie){
+					Thread.currentThread().interrupt();
+				}
+;
+
+			}
+		});
+
 		giveUpBtn.setOnMouseReleased(new EventHandler<MouseEvent>(){
 			@Override
 			public void handle(MouseEvent pEvent){
+				giveUpSound.startPlay();
+				gameMusic.stopPlay();
 				model.reset();
 			}
 		});
+
 		giveUpBtn.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -135,7 +156,7 @@ public class main extends Application
 				giveUpBtn.setText("don't give up");
 			}
 		});
-		// 鼠标移出
+
 		giveUpBtn.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {

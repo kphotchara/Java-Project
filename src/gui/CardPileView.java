@@ -111,6 +111,7 @@ public class CardPileView extends StackPane implements GameModelListener
 				{
 					if( aModel.isLegalMove(CardSerializer.deserializeBottomCard(pEvent.getDragboard().getString()), aIndex) )
 					{
+						cardSound.setVolume(1.00);
 						cardSound.startPlay();
 						pEvent.acceptTransferModes(TransferMode.MOVE);
 					}
