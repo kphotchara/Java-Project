@@ -26,6 +26,8 @@ class DeckView extends HBox implements GameModelListener
     private static final int IMAGE_FONT_SIZE = 15;
 	
     private final GameModel aModel;
+
+	SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("card.mp3").toString());
     
 	DeckView(GameModel pModel)
 	{
@@ -39,7 +41,6 @@ class DeckView extends HBox implements GameModelListener
     		@Override
     		public void handle(MouseEvent pEvent) 
     		{
-				SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("card.mp3").toString());
 				cardSound.startPlay();
 				((Button)pEvent.getSource()).setStyle(BUTTON_STYLE_PRESSED);
     		}            

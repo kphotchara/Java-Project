@@ -17,6 +17,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
+import org.w3c.dom.ls.LSOutput;
 
 /**
  * Application class for Solitaire. The responsibility of this class is limited
@@ -50,7 +51,7 @@ public class main extends Application
 	    
     @Override
     public void start(Stage pPrimaryStage)
-    {
+	{
 		gameMusic.setLoop();
 		gameMusic.startPlay();
 

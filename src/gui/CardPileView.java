@@ -26,6 +26,8 @@ public class CardPileView extends StackPane implements GameModelListener
 
 	private TableauPile aIndex;
 	private final GameModel aModel;
+
+	SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("card.mp3").toString());
 	
 	CardPileView(GameModel pModel, TableauPile pIndex)
 	{
@@ -153,12 +155,11 @@ public class CardPileView extends StackPane implements GameModelListener
 			@Override
 			public void handle(DragEvent pEvent)
 			{
+				cardSound.startPlay();
 				Dragboard db = pEvent.getDragboard();
 				boolean success = false;
 				if(db.hasString()) 
 				{
-					SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("card.mp3").toString());
-					cardSound.startPlay();
 					aModel.getCardMove(CardSerializer.deserializeBottomCard(db.getString()), aIndex).perform(); 
 					success = true;
 				}
