@@ -131,7 +131,7 @@ public class main extends Application
 				try {
 					Thread.sleep(2500);
 					giveUpSound.stopPlay();
-					gameMusic.startPlay();
+					if(soundPlaying)gameMusic.startPlay();
 				}
 				catch (InterruptedException ie){
 					Thread.currentThread().interrupt();
