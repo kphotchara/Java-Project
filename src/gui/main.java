@@ -171,11 +171,15 @@ public class main extends Application
 			public void handle(MouseEvent pEvent)
 			{
 				if(soundPlaying){
-					gameMusic.stopPlay();
+					if(gameMusic.isPlaying()) {
+						gameMusic.stopPlay();
+					}
 					soundBtn.setGraphic(muteImg);
 				}
 				else {
-					gameMusic.startPlay();
+					if(!gameMusic.isPlaying()) {
+						gameMusic.startPlay();
+					}
 					soundBtn.setGraphic(soundImg);
 				}
 				soundPlaying = !soundPlaying;
