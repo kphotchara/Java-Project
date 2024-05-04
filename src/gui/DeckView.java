@@ -55,7 +55,8 @@ class DeckView extends HBox implements GameModelListener
     			((Button)pEvent.getSource()).setStyle(BUTTON_STYLE_NORMAL);
     			if( aModel.isDeckEmpty() )
     			{
-    				//resetdeck function
+					aModel.resetDeck();
+
     			}
     			else
     			{

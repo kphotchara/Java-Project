@@ -169,7 +169,7 @@ public final class GameModel implements GameModelView
 		assert aDiscard.size() != 0;
 		return aDiscard.peek();
 	}
-	
+
 	/**
 	 * @param pCard A card to locate.
 	 * @return The game location where this card currently is.
@@ -266,7 +266,29 @@ public final class GameModel implements GameModelView
 		}
 		notifyListeners();
 	}
-	
+
+	/*
+		Get current discard pile and deck pile
+	 */
+	public CardStack getDiscard() {
+		return aDiscard;
+	}
+
+	public Deck getDeck() {
+		return aDeck;
+	}
+
+	/*
+		Reset the deck back to first index of discard pile
+	 */
+
+	public void resetDeck() {
+		while(!isDiscardPileEmpty()) {
+			aDeck.push(aDiscard.pop());
+		}
+		notifyListeners();
+	}
+
 	@Override
 	public CardStack getTableauPile(TableauPile pIndex)
 	{
