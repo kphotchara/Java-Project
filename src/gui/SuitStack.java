@@ -28,7 +28,7 @@ public class SuitStack extends StackPane implements GameModelListener
 			-fx-border-radius: 10.0""";
 	
 	private static final String BORDER_STYLE_DRAGGED = """
-			-fx-border-color: #8b99c9; \
+			-fx-border-color: #63647F; \
 			-fx-border-width: 2; \
 			-fx-border-radius: 10.0""";
 	
