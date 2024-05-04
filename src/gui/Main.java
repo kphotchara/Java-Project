@@ -1,5 +1,6 @@
 package gui;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -30,10 +31,11 @@ public class Main extends Application
 	private static final String TITLE = "Solitaire";
 	private static final String VERSION = "8.8.8";
 	private boolean soundPlaying = true;
-	SoundPlayer gameMusic = new SoundPlayer(ClassLoader.getSystemResource("background.mp3").toString());
-	SoundPlayer giveUpSound = new SoundPlayer(ClassLoader.getSystemResource("gameover.wav").toString());
-	SoundPlayer buttonSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.mp3").toString());
-	SoundPlayer homePageSound = new SoundPlayer(ClassLoader.getSystemResource("homepage.mp3").toString());
+
+	private SoundPlayer gameMusic = new SoundPlayer(ClassLoader.getSystemResource("background.mp3").toString());
+	private SoundPlayer giveUpSound = new SoundPlayer(ClassLoader.getSystemResource("gameover.wav").toString());
+	private SoundPlayer buttonSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.mp3").toString());
+	private SoundPlayer homePageSound = new SoundPlayer(ClassLoader.getSystemResource("homepage.mp3").toString());
 
 	/**
 	 * Application head.
@@ -80,19 +82,39 @@ public class Main extends Application
     	final GameModel model = new GameModel();
     	DeckView deckView = new DeckView(model);
         DiscardPileView discardPileView = new DiscardPileView(model);
+
 		Button newGameButton = new Button("New Game");
 		Button soundButton = new Button();
-		newGameButton.setMaxSize(90,30);
-		newGameButton.setMinSize(90,30);
-		newGameButton.setStyle("-fx-background-color: white; -fx-text-fill: #36469B; -fx-background-radius: 5em;");
+		Button undoButton = new Button();
+		newGameBtn.setMaxSize(90,30);
+		newGameBtn.setMinSize(90,30);
+		newGameBtn.setStyle("-fx-background-color: white; -fx-text-fill: #36469B; -fx-background-radius: 5em;");
+
 		ImageView soundImg = new ImageView(ClassLoader.getSystemResource("icons8-sound-50.png").toString());
 		ImageView muteImg = new ImageView(ClassLoader.getSystemResource("icons8-mute-50.png").toString());
+		ImageView soundImgHover = new ImageView(ClassLoader.getSystemResource("icons8-sound-50-hover.png").toString());
+		ImageView muteImgHover = new ImageView(ClassLoader.getSystemResource("icons8-mute-50-hover.png").toString());
+		ImageView undoImg = new ImageView(ClassLoader.getSystemResource("icons8-undo-96.png").toString());
+		ImageView undoImgHover = new ImageView(ClassLoader.getSystemResource("icons8-undo-96-hover.png").toString());
 		soundImg.setFitWidth(30);
 		soundImg.setFitHeight(30);
 		muteImg.setFitWidth(30);
 		muteImg.setFitHeight(30);
+
+		soundImgHover.setFitWidth(30);
+		soundImgHover.setFitHeight(30);
+		muteImgHover.setFitWidth(30);
+		muteImgHover.setFitHeight(30);
+		undoImg.setFitWidth(30);
+		undoImg.setFitHeight(30);
+
+		undoImgHover.setFitWidth(30);
+		undoImgHover.setFitHeight(30);
 		soundButton.setGraphic(soundImg);
 		soundButton.setAlignment(Pos.CENTER);
+		undoButton.setGraphic(undoImg);
+		undoButton.setAlignment(Pos.CENTER);
+		GridPane.setHalignment(undoButton, HPos.RIGHT);
 
 		soundButton.setStyle("-fx-background-color: transparent, transparent, transparent, transparent, transparent;" +
 				"    -fx-pref-height: 30;" +
@@ -101,10 +123,19 @@ public class Main extends Application
 				"    -fx-min-width: 30;" +
 				"    -fx-max-height: 30;" +
 				"    -fx-max-width: 30;");
+		undoBtn.setStyle("-fx-background-color: transparent, transparent, transparent, transparent, transparent;" +
+				"    -fx-pref-height: 30;" +
+				"    -fx-pref-width: 30;" +
+				"    -fx-min-height: 30;" +
+				"    -fx-min-width: 30;" +
+				"    -fx-max-height: 30;" +
+				"    -fx-max-width: 30;");
 
 		root.add(soundButton, 0, 0);
+		root.add(undoButton, 5, 0);
 		GridPane.setMargin(soundButton, new Insets(0, 0, 0, 6));
 		root.add(newGameButton, 6, 0);
+
         root.add(deckView, 0, 1);
         root.add(discardPileView, 1, 1);
 		
@@ -118,18 +149,6 @@ public class Main extends Application
         	root.add(new CardPileView(model, index), index.ordinal(), 2);
         }
 
-        root.setOnKeyTyped(new EventHandler<KeyEvent>()
-		{
-			@Override
-			public void handle(final KeyEvent pEvent)
-			{
-				if( pEvent.getCharacter().equals("u"))
-				{
-					model.undoLast();
-				}
-				pEvent.consume();
-			}
-		});
 
 		newGameButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -173,6 +192,36 @@ public class Main extends Application
 			}
 		});
 
+		undoButton.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				undoButton.setGraphic(undoImgHover);
+			}
+		});
+
+		undoButton.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				undoButton.setGraphic(undoImg);
+			}
+		});
+
+		soundButton.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				if(soundPlaying)soundButton.setGraphic(soundImgHover);
+				else soundButton.setGraphic(muteImgHover);
+			}
+		});
+
+		soundButton.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				if(soundPlaying)soundButton.setGraphic(soundImg);
+				else soundButton.setGraphic(muteImg);
+			}
+		});
+
 		startButton.setOnMouseEntered(e -> {
 			startButton.setStyle("-fx-background-color: white; -fx-background-radius: 5em; -fx-text-fill: #FB688E; -fx-font-size: 16px; -fx-border-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-min-width: 120px; -fx-min-height: 40px;");
 		});
@@ -201,6 +250,13 @@ public class Main extends Application
 				soundPlaying = !soundPlaying;
 
 			}
+		});
+
+		startButton.setOnAction(e -> {
+			buttonSound.stopPlay();
+			buttonSound.startPlay();
+		undoButton.setOnAction(e ->{
+			model.undoLast();
 		});
 
 		startButton.setOnAction(e -> {
