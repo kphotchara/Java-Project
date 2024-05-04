@@ -54,7 +54,7 @@ public final class GameModel implements GameModelView
 	private final Deck aDeck = new Deck();
 	private final Stack<Move> aMoves = new Stack<>();
 	private final CardStack aDiscard = new CardStack();
-	private final Foundations aFoundations = new Foundations();
+	private final Foundation aFoundation = new Foundation();
 	private final Tableau aTableau = new Tableau();
 	private final List<GameModelListener> aListeners = new ArrayList<>();
 	
@@ -71,7 +71,7 @@ public final class GameModel implements GameModelView
 	 */
 	public int getScore()
 	{
-		return aFoundations.getTotalSize();
+		return aFoundation.getTotalSize();
 	}
 	
 	/**
@@ -102,7 +102,7 @@ public final class GameModel implements GameModelView
 		aMoves.clear();
 		aDeck.shuffle();
 		aDiscard.clear();
-		aFoundations.initialize();
+		aFoundation.initialize();
 		aTableau.initialize(aDeck);
 		notifyListeners();
 	}
@@ -112,7 +112,7 @@ public final class GameModel implements GameModelView
 	 */
 	public boolean isCompleted()
 	{
-		return aFoundations.getTotalSize() == Rank.values().length * Suit.values().length;
+		return aFoundation.getTotalSize() == Rank.values().length * Suit.values().length;
 	}
 	
 	@Override
@@ -130,7 +130,7 @@ public final class GameModel implements GameModelView
 	@Override
 	public boolean isFoundationPileEmpty(FoundationPile pPile)
 	{
-		return aFoundations.isEmpty(pPile);
+		return aFoundation.isEmpty(pPile);
 	}
 	
 	/**
@@ -142,7 +142,7 @@ public final class GameModel implements GameModelView
 	public Card peekSuitStack(FoundationPile pPile)
 	{
 		assert pPile != null && !isFoundationPileEmpty(pPile);
-		return aFoundations.peek(pPile);
+		return aFoundation.peek(pPile);
 	}
 	
 	@Override
@@ -165,7 +165,7 @@ public final class GameModel implements GameModelView
 		}
 		for( FoundationPile index : FoundationPile.values() )
 		{
-			if( !aFoundations.isEmpty(index) && aFoundations.peek(index) == pCard )
+			if( !aFoundation.isEmpty(index) && aFoundation.peek(index) == pCard )
 			{
 				return index;
 			}
@@ -212,8 +212,8 @@ public final class GameModel implements GameModelView
 		}
 		else if( pLocation instanceof FoundationPile )
 		{
-			assert !aFoundations.isEmpty((FoundationPile)pLocation);
-			aFoundations.pop((FoundationPile)pLocation);
+			assert !aFoundation.isEmpty((FoundationPile)pLocation);
+			aFoundation.pop((FoundationPile)pLocation);
 		}
 		else
 		{
@@ -234,7 +234,7 @@ public final class GameModel implements GameModelView
 			absorbCard(source);
 			if( pDestination instanceof FoundationPile )
 			{
-				aFoundations.push(pCard, (FoundationPile)pDestination);
+				aFoundation.push(pCard, (FoundationPile)pDestination);
 			}
 			else if( pDestination == OtherLocation.DISCARD_PILE )
 			{
@@ -308,7 +308,7 @@ public final class GameModel implements GameModelView
 	{ 
 		if( pDestination instanceof FoundationPile )
 		{
-			return aFoundations.canMoveTo(pCard, (FoundationPile) pDestination);
+			return aFoundation.canMoveTo(pCard, (FoundationPile) pDestination);
 		}
 		else if( pDestination instanceof TableauPile )
 		{
@@ -362,7 +362,7 @@ public final class GameModel implements GameModelView
 		private Location aOrigin; 
 		private Location aDestination; 
 		
-		CardMove(Card pCard, Location pDestination)
+		public CardMove(Card pCard, Location pDestination)
 		{
 			aCard = pCard;
 			aDestination = pDestination;

@@ -43,13 +43,13 @@ public class SuitStack extends StackPane implements GameModelListener
 
 	SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("card.wav").toString());
 	
-	SuitStack(GameModel pModel, FoundationPile pIndex)
+	public SuitStack(GameModel pModel, FoundationPile pIndex)
 	{
 		aModel = pModel;
 		aIndex = pIndex;
 		setPadding(new Insets(PADDING));
 		setStyle(BORDER_STYLE);
-		final ImageView image = new ImageView(CardImages.imageForBackOfCard());
+		final ImageView image = new ImageView(CardImage.imageForBackOfCard());
     	image.setVisible(false);
        	getChildren().add(image);
     	aDragHandler = new CardDragHandler(image);
@@ -73,7 +73,7 @@ public class SuitStack extends StackPane implements GameModelListener
 			getChildren().get(0).setVisible(true);
 			Card topCard = aModel.peekSuitStack(aIndex);
 			ImageView image = (ImageView)getChildren().get(0);
-			image.setImage(CardImages.imageFor(topCard));
+			image.setImage(CardImage.imageFor(topCard));
 			aDragHandler.setCard(topCard);
 		}
 	}
