@@ -1,5 +1,6 @@
 package gui;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -85,17 +86,24 @@ public class Main extends Application
         DiscardPileView discardPileView = new DiscardPileView(model);
 		Button newGameBtn = new Button("New Game");
 		Button soundBtn = new Button();
+		Button undoBtn = new Button();
 		newGameBtn.setMaxSize(90,30);
 		newGameBtn.setMinSize(90,30);
 		newGameBtn.setStyle("-fx-background-color: white; -fx-text-fill: #36469B; -fx-background-radius: 5em;");
 		ImageView soundImg = new ImageView(ClassLoader.getSystemResource("icons8-sound-50.png").toString());
 		ImageView muteImg = new ImageView(ClassLoader.getSystemResource("icons8-mute-50.png").toString());
+		ImageView undoImg = new ImageView(ClassLoader.getSystemResource("icons8-undo-96.png").toString());
 		soundImg.setFitWidth(30);
 		soundImg.setFitHeight(30);
 		muteImg.setFitWidth(30);
 		muteImg.setFitHeight(30);
+		undoImg.setFitWidth(30);
+		undoImg.setFitHeight(30);
 		soundBtn.setGraphic(soundImg);
 		soundBtn.setAlignment(Pos.CENTER);
+		undoBtn.setGraphic(undoImg);
+		undoBtn.setAlignment(Pos.CENTER);
+		GridPane.setHalignment(undoBtn, HPos.RIGHT);
 
 		soundBtn.setStyle("-fx-background-color: transparent, transparent, transparent, transparent, transparent;" +
 				"    -fx-pref-height: 30;" +
@@ -104,8 +112,17 @@ public class Main extends Application
 				"    -fx-min-width: 30;" +
 				"    -fx-max-height: 30;" +
 				"    -fx-max-width: 30;");
+		undoBtn.setStyle("-fx-background-color: transparent, transparent, transparent, transparent, transparent;" +
+				"    -fx-pref-height: 30;" +
+				"    -fx-pref-width: 30;" +
+				"    -fx-min-height: 30;" +
+				"    -fx-min-width: 30;" +
+				"    -fx-max-height: 30;" +
+				"    -fx-max-width: 30;");
+
 
 		root.add(soundBtn, 0, 0);
+		root.add(undoBtn, 5, 0);
 		GridPane.setMargin(soundBtn, new Insets(0, 0, 0, 6));
 		root.add(newGameBtn, 6, 0);
         root.add(deckView, 0, 1);
@@ -121,18 +138,6 @@ public class Main extends Application
         	root.add(new CardPileView(model, index), index.ordinal(), 2);
         }
 
-        root.setOnKeyTyped(new EventHandler<KeyEvent>()
-		{
-			@Override
-			public void handle(final KeyEvent pEvent)
-			{
-				if( pEvent.getCharacter().equals("u"))
-				{
-					model.undoLast();
-				}
-				pEvent.consume();
-			}
-		});
 
 		newGameBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -204,6 +209,9 @@ public class Main extends Application
 				soundPlaying = !soundPlaying;
 
 			}
+		});
+		undoBtn.setOnAction(e ->{
+			model.undoLast();
 		});
 
 		startBtn.setOnAction(e -> {
