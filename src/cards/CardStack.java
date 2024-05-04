@@ -9,8 +9,6 @@ import java.util.List;
  */
 public class CardStack extends BaseStack implements Iterable<Card>
 {
-	//private final List<Card> aCards;
-
 	/**
 	 * Creates an empty CardStack.
 	 */
@@ -27,11 +25,13 @@ public class CardStack extends BaseStack implements Iterable<Card>
 	 */
 	public CardStack(Iterable<Card> pCards)
 	{
-		this();
+		super();
+		List<Card> cards = new ArrayList<>();
 		for( Card card : pCards )
 		{
-			aCards.add(card);
+			cards.add(card);
 		}
+		super.setACards(cards);
 	}
 	
 	/**
@@ -44,7 +44,7 @@ public class CardStack extends BaseStack implements Iterable<Card>
 	@Override
 	public void push(Card pCard)
 	{
-		assert !aCards.contains(pCard);
+		assert pCard != null && !aCards.contains(pCard);
 		super.push(pCard);
 	}
 	
@@ -57,6 +57,7 @@ public class CardStack extends BaseStack implements Iterable<Card>
 	@Override
 	public Card pop()
 	{
+		assert !isEmpty();
 		return super.pop();
 	}
 	

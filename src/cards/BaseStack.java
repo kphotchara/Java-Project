@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseStack {
-    protected final List<Card> aCards;
+    protected List<Card> aCards;
 
     public BaseStack(){
         aCards = new ArrayList<>();
@@ -25,5 +25,9 @@ public class BaseStack {
     public boolean isEmpty()
     {
         return aCards.size() == 0;
+    }
+
+    public void setACards(List<Card> aCards) {
+        this.aCards = aCards;
     }
 }

@@ -25,15 +25,16 @@ public class Deck extends BaseStack
 	 */
 	public void shuffle()
 	{
-		//List<Card> cards = new ArrayList<>();
+		List<Card> cards = new ArrayList<>();
 		for( Suit suit : Suit.values() )
 		{
             for( Rank rank : Rank.values() )
             {
-                aCards.add( Card.get( rank, suit ));
+                cards.add( Card.get( rank, suit ));
             }
 		}
-		Collections.shuffle(aCards);
+		Collections.shuffle(cards);
+		super.setACards(cards);
 		//aCards = new CardStack(cards);llll
 	}
 	
@@ -45,6 +46,7 @@ public class Deck extends BaseStack
 	@Override
 	public void push(Card pCard)
 	{
+		assert pCard != null;
 		super.push(pCard);
 	}
 	
@@ -56,6 +58,7 @@ public class Deck extends BaseStack
 	@Override
 	public Card pop()
 	{
+		assert !isEmpty();
 		return super.pop();
 	}
 	
