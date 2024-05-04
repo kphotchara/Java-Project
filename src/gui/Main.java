@@ -24,7 +24,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application
 {
-	private static final int WIDTH = 700;
+	private static final int WIDTH = 685;
 	private static final int HEIGHT = 600;
 	private static final int MARGIN_OUTER = 10;
 	private static final String TITLE = "Solitaire";
