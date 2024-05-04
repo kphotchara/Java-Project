@@ -1,6 +1,5 @@
 package model;
 
-import ai.PlayingStrategy;
 import cards.*;
 
 import java.util.ArrayList;
@@ -58,17 +57,12 @@ public final class GameModel implements GameModelView
 	private final Foundations aFoundations = new Foundations();
 	private final Tableau aTableau = new Tableau();
 	private final List<GameModelListener> aListeners = new ArrayList<>();
-	private final PlayingStrategy aPlayingStrategy;
 	
 	/**
 	 * Creates a new game model initialized to a new game.
-	 * @param pPlayingStrategy The strategy to use for auto-play. 
-	 * @pre pPlayingStrategy != null
 	 */
-	public GameModel(PlayingStrategy pPlayingStrategy)
+	public GameModel()
 	{
-		assert pPlayingStrategy != null;
-		aPlayingStrategy = pPlayingStrategy;
 		reset();
 	}
 	
@@ -78,18 +72,6 @@ public final class GameModel implements GameModelView
 	public int getScore()
 	{
 		return aFoundations.getTotalSize();
-	}
-	
-	/**
-	 * Try to automatically make a move. This may result in nothing happening
-	 * if the auto-play strategy cannot make a decision.
-	 * @return Whether a move was performed or not.
-	 */
-	public boolean tryToAutoPlay()
-	{
-		Move move = aPlayingStrategy.getLegalMove(this);
-		move.perform();
-		return !move.isNull();
 	}
 	
 	/**

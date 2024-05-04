@@ -1,7 +1,5 @@
 package gui;
 
-import ai.GreedyPlayingStrategy;
-import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -17,8 +15,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import javafx.scene.control.*;
-import org.w3c.dom.ls.LSOutput;
 
 /**
  * Application class for Solitaire. The responsibility of this class is limited
@@ -26,7 +22,7 @@ import org.w3c.dom.ls.LSOutput;
  * gesture handling logic is handled by its composed elements, which act
  * as observers of the game model.
  */
-public class main extends Application
+public class Main extends Application
 {
 	private static final int WIDTH = 700;
 	private static final int HEIGHT = 600;
@@ -42,7 +38,7 @@ public class main extends Application
 	/**
 	 * Application head.
 	 */
-	public main() {}
+	public Main() {}
     
 	/**
 	 * Launches the application.
@@ -84,7 +80,7 @@ public class main extends Application
         root.setVgap(MARGIN_OUTER);
         root.setPadding(new Insets(MARGIN_OUTER));
         
-    	final GameModel model = new GameModel(new GreedyPlayingStrategy());
+    	final GameModel model = new GameModel();
     	DeckView deckView = new DeckView(model);
         DiscardPileView discardPileView = new DiscardPileView(model);
 		Button newGameBtn = new Button("New Game");
@@ -127,15 +123,10 @@ public class main extends Application
 
         root.setOnKeyTyped(new EventHandler<KeyEvent>()
 		{
-
 			@Override
 			public void handle(final KeyEvent pEvent)
 			{
-				if( pEvent.getCharacter().equals("\r"))
-				{
-					model.tryToAutoPlay();
-				}
-				else if( pEvent.getCharacter().equals("u"))
+				if( pEvent.getCharacter().equals("u"))
 				{
 					model.undoLast();
 				}
