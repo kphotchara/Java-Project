@@ -4,8 +4,10 @@ import ai.GreedyPlayingStrategy;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
 import model.FoundationPile;
 import model.GameModel;
 import model.TableauPile;
@@ -14,7 +16,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
@@ -57,7 +58,7 @@ public class main extends Application
 		pPrimaryStage.setTitle(TITLE + " " + VERSION);
 
         GridPane root = new GridPane();
-        root.setStyle("-fx-background-color: green;");
+        root.setBackground(new Background(new BackgroundImage(new Image("background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         root.setHgap(MARGIN_OUTER);
         root.setVgap(MARGIN_OUTER);
         root.setPadding(new Insets(MARGIN_OUTER));

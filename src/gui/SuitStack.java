@@ -23,18 +23,18 @@ public class SuitStack extends StackPane implements GameModelListener
 	private static final int PADDING = 5;
 
 	private static final String BORDER_STYLE = """
-			-fx-border-color: lightgray; \
-			-fx-border-width: 3; \
+			-fx-border-color: #8b99c9; \
+			-fx-border-width: 2; \
 			-fx-border-radius: 10.0""";
 	
 	private static final String BORDER_STYLE_DRAGGED = """
-			-fx-border-color: darkgray; \
-			-fx-border-width: 3; \
+			-fx-border-color: #8b99c9; \
+			-fx-border-width: 2; \
 			-fx-border-radius: 10.0""";
 	
 	private static final String BORDER_STYLE_NORMAL = """
-			-fx-border-color: lightgray; \
-			-fx-border-width: 3; 
+			-fx-border-color: #8b99c9; \
+			-fx-border-width: 2; 
 			-fx-border-radius: 10.0""";
 	
 	private CardDragHandler aDragHandler;
