@@ -86,9 +86,9 @@ public class Main extends Application
 		Button newGameButton = new Button("New Game");
 		Button soundButton = new Button();
 		Button undoButton = new Button();
-		newGameBtn.setMaxSize(90,30);
-		newGameBtn.setMinSize(90,30);
-		newGameBtn.setStyle("-fx-background-color: white; -fx-text-fill: #36469B; -fx-background-radius: 5em;");
+		newGameButton.setMaxSize(90,30);
+		newGameButton.setMinSize(90,30);
+		newGameButton.setStyle("-fx-background-color: white; -fx-text-fill: #36469B; -fx-background-radius: 5em;");
 
 		ImageView soundImg = new ImageView(ClassLoader.getSystemResource("icons8-sound-50.png").toString());
 		ImageView muteImg = new ImageView(ClassLoader.getSystemResource("icons8-mute-50.png").toString());
@@ -123,7 +123,7 @@ public class Main extends Application
 				"    -fx-min-width: 30;" +
 				"    -fx-max-height: 30;" +
 				"    -fx-max-width: 30;");
-		undoBtn.setStyle("-fx-background-color: transparent, transparent, transparent, transparent, transparent;" +
+		undoButton.setStyle("-fx-background-color: transparent, transparent, transparent, transparent, transparent;" +
 				"    -fx-pref-height: 30;" +
 				"    -fx-pref-width: 30;" +
 				"    -fx-min-height: 30;" +
@@ -255,23 +255,23 @@ public class Main extends Application
 		startButton.setOnAction(e -> {
 			buttonSound.stopPlay();
 			buttonSound.startPlay();
-		undoButton.setOnAction(e ->{
-			model.undoLast();
+			undoButton.setOnAction(ee -> {
+				model.undoLast();
+			});
+
+			startButton.setOnAction(ee -> {
+				buttonSound.stopPlay();
+				buttonSound.startPlay();
+				pPrimaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
+				homePageSound.stopPlay();
+				gameMusic.startPlay();
+			});
+
+
+			pPrimaryStage.setResizable(false);
+			pPrimaryStage.setScene(new Scene(homepageLayout, WIDTH, HEIGHT));
+			pPrimaryStage.show();
 		});
-
-		startButton.setOnAction(e -> {
-			buttonSound.stopPlay();
-			buttonSound.startPlay();
-			pPrimaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
-			homePageSound.stopPlay();
-			gameMusic.startPlay();
-		});
-
-
-        pPrimaryStage.setResizable(false);
-        pPrimaryStage.setScene(new Scene(homepageLayout, WIDTH, HEIGHT));
-        pPrimaryStage.show();
-
     }
 
 }
