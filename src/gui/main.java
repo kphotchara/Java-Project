@@ -37,6 +37,7 @@ public class main extends Application
 	SoundPlayer gameMusic = new SoundPlayer(ClassLoader.getSystemResource("background.mp3").toString());
 	SoundPlayer giveUpSound = new SoundPlayer(ClassLoader.getSystemResource("gameover.wav").toString());
 	SoundPlayer btnSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.wav").toString());
+	SoundPlayer homePageSound = new SoundPlayer(ClassLoader.getSystemResource("homepage.mp3").toString());
 
 	/**
 	 * Application head.
@@ -55,9 +56,12 @@ public class main extends Application
     @Override
     public void start(Stage pPrimaryStage)
 	{
-		gameMusic.setVolume(0.45);
-		gameMusic.setLoop();
-		gameMusic.startPlay();
+		homePageSound.setVolume(1.00);
+		homePageSound.setLoop();
+		homePageSound.startPlay();
+//		gameMusic.setVolume(0.45);
+//		gameMusic.setLoop();
+//		gameMusic.startPlay();
 
 		pPrimaryStage.setTitle(TITLE + " " + VERSION);
 
@@ -215,7 +219,8 @@ public class main extends Application
 			btnSound.stopPlay();
 			btnSound.startPlay();
 			pPrimaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
-
+			homePageSound.stopPlay();
+			gameMusic.startPlay();
 		});
 
 
