@@ -29,7 +29,7 @@ public class Main extends Application
 	private static final int MARGIN_OUTER = 10;
 	private static final String TITLE = "Solitaire";
 	private static final String VERSION = "8.8.8";
-	boolean soundPlaying = true;
+	private boolean soundPlaying = true;
 	SoundPlayer gameMusic = new SoundPlayer(ClassLoader.getSystemResource("background.mp3").toString());
 	SoundPlayer giveUpSound = new SoundPlayer(ClassLoader.getSystemResource("gameover.wav").toString());
 	SoundPlayer btnSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.mp3").toString());
