@@ -86,7 +86,7 @@ public class main extends Application
 		Button soundBtn = new Button();
 		newGameBtn.setMaxSize(90,30);
 		newGameBtn.setMinSize(90,30);
-		newGameBtn.setStyle("-fx-background-color: white;");
+		newGameBtn.setStyle("-fx-background-color: white; -fx-text-fill: #36469B; -fx-background-radius: 5em;");
 		ImageView soundImg = new ImageView(ClassLoader.getSystemResource("icons8-sound-50.png").toString());
 		ImageView muteImg = new ImageView(ClassLoader.getSystemResource("icons8-mute-50.png").toString());
 		soundImg.setFitWidth(30);
@@ -166,7 +166,7 @@ public class main extends Application
 		newGameBtn.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				newGameBtn.setStyle("-fx-background-color: #E1E1E1; -fx-text-fill: #E33535");
+				newGameBtn.setStyle("-fx-background-color: #FB688E; -fx-background-radius: 5em; -fx-text-fill: white;");
 				if(model.isCompleted())newGameBtn.setText("again?");
 				else newGameBtn.setText("don't give up");
 			}
@@ -175,7 +175,7 @@ public class main extends Application
 		newGameBtn.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				newGameBtn.setStyle("-fx-background-color: white;");
+				newGameBtn.setStyle("-fx-background-color: white; -fx-background-radius: 5em; -fx-text-fill: #36469B;");
 				newGameBtn.setText("New Game");
 			}
 		});
