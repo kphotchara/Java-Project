@@ -41,7 +41,7 @@ public class SuitStack extends StackPane implements GameModelListener
 	private FoundationPile aIndex;
 	private final GameModel aModel;
 
-	SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("card.mp3").toString());
+	SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.wav").toString());
 	
 	SuitStack(GameModel pModel, FoundationPile pIndex)
 	{
@@ -90,8 +90,6 @@ public class SuitStack extends StackPane implements GameModelListener
     	    		CardStack transfer = CardSerializer.deserialize(pEvent.getDragboard().getString());
     	    		if( transfer.size() == 1 && aModel.isLegalMove(transfer.peek(), aIndex) )
     	    		{
-						cardSound.setVolume(1.00);
-						cardSound.startPlay();
     	    			pEvent.acceptTransferModes(TransferMode.MOVE);
     	    		}
     	    	}
@@ -112,6 +110,7 @@ public class SuitStack extends StackPane implements GameModelListener
     			{
     				setStyle(BORDER_STYLE_DRAGGED);
     			}
+				cardSound.stopPlay();
     			pEvent.consume();
     		}
     	};
@@ -124,9 +123,10 @@ public class SuitStack extends StackPane implements GameModelListener
     		@Override
 			public void handle(DragEvent pEvent)
     		{
-				cardSound.stopPlay();
+
     			setStyle(BORDER_STYLE_NORMAL);
     			pEvent.consume();
+
     		}
     	};
 	}
@@ -140,6 +140,8 @@ public class SuitStack extends StackPane implements GameModelListener
     		{
     			Dragboard db = pEvent.getDragboard();
     			boolean success = false;
+				cardSound.setVolume(1.00);
+				cardSound.startPlay();
     			if(db.hasString()) 
     			{
     				aModel.getCardMove(CardSerializer.deserializeBottomCard(pEvent.getDragboard().getString()), aIndex).perform();

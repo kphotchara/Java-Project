@@ -27,8 +27,8 @@ class DeckView extends HBox implements GameModelListener
 	
     private final GameModel aModel;
 
-	SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("card.mp3").toString());
-    
+	SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.wav").toString());
+
 	DeckView(GameModel pModel)
 	{
 		aModel = pModel;
@@ -41,8 +41,7 @@ class DeckView extends HBox implements GameModelListener
     		@Override
     		public void handle(MouseEvent pEvent) 
     		{
-				cardSound.setVolume(1.00);
-				cardSound.startPlay();
+				cardSound.stopPlay();
 				((Button)pEvent.getSource()).setStyle(BUTTON_STYLE_PRESSED);
     		}
     	});
@@ -52,6 +51,8 @@ class DeckView extends HBox implements GameModelListener
     		@Override
     		public void handle(MouseEvent pEvent) 
     		{
+				cardSound.setVolume(1.00);
+				cardSound.startPlay();
     			((Button)pEvent.getSource()).setStyle(BUTTON_STYLE_NORMAL);
     			if( aModel.isDeckEmpty() )
     			{
@@ -60,7 +61,6 @@ class DeckView extends HBox implements GameModelListener
     			}
     			else
     			{
-					cardSound.stopPlay();
     				aModel.getDiscardMove().perform();
     			}
     		}            

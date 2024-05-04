@@ -27,7 +27,7 @@ public class CardPileView extends StackPane implements GameModelListener
 	private TableauPile aIndex;
 	private final GameModel aModel;
 
-	SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("card.mp3").toString());
+	SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.wav").toString());
 	
 	CardPileView(GameModel pModel, TableauPile pIndex)
 	{
@@ -111,8 +111,7 @@ public class CardPileView extends StackPane implements GameModelListener
 				{
 					if( aModel.isLegalMove(CardSerializer.deserializeBottomCard(pEvent.getDragboard().getString()), aIndex) )
 					{
-						cardSound.setVolume(1.00);
-						cardSound.startPlay();
+
 						pEvent.acceptTransferModes(TransferMode.MOVE);
 					}
 				}
@@ -128,6 +127,7 @@ public class CardPileView extends StackPane implements GameModelListener
 			@Override
 			public void handle(DragEvent pEvent)
 			{
+				cardSound.stopPlay();
 				if( aModel.isLegalMove(CardSerializer.deserializeBottomCard(pEvent.getDragboard().getString()), aIndex) )
 				{
 					pImageView.setEffect(new DropShadow());
@@ -146,7 +146,7 @@ public class CardPileView extends StackPane implements GameModelListener
 			{
 				pImageView.setEffect(null);
 				pEvent.consume();
-				cardSound.stopPlay();
+
 			}
 		};
 	}
@@ -160,6 +160,7 @@ public class CardPileView extends StackPane implements GameModelListener
 			{
 				Dragboard db = pEvent.getDragboard();
 				boolean success = false;
+
 				if(db.hasString()) 
 				{
 					aModel.getCardMove(CardSerializer.deserializeBottomCard(db.getString()), aIndex).perform(); 
@@ -167,6 +168,8 @@ public class CardPileView extends StackPane implements GameModelListener
 				}
 
 				pEvent.setDropCompleted(success);
+				cardSound.setVolume(1.00);
+				cardSound.startPlay();
 				pEvent.consume();
 			}
 		};
