@@ -32,7 +32,7 @@ public class Main extends Application
 	private boolean soundPlaying = true;
 	SoundPlayer gameMusic = new SoundPlayer(ClassLoader.getSystemResource("background.mp3").toString());
 	SoundPlayer giveUpSound = new SoundPlayer(ClassLoader.getSystemResource("gameover.wav").toString());
-	SoundPlayer btnSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.mp3").toString());
+	SoundPlayer buttonSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.mp3").toString());
 	SoundPlayer homePageSound = new SoundPlayer(ClassLoader.getSystemResource("homepage.mp3").toString());
 
 	/**
@@ -55,24 +55,21 @@ public class Main extends Application
 		homePageSound.setVolume(1.00);
 		homePageSound.setLoop();
 		homePageSound.startPlay();
-//		gameMusic.setVolume(0.45);
-//		gameMusic.setLoop();
-//		gameMusic.startPlay();
 
 		pPrimaryStage.setTitle(TITLE + " " + VERSION);
 
 		VBox homepageLayout = new VBox();
 		BackgroundSize backgroundSize = new BackgroundSize(700, 600, false, false, false, true);
-		homepageLayout.setBackground(new Background(new BackgroundImage(new Image("homepage-background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize)));;
+		homepageLayout.setBackground(new Background(new BackgroundImage(new Image("homepage-background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize)));
 		homepageLayout.setSpacing(10);
 		homepageLayout.setPadding(new Insets(20));
 		homepageLayout.setAlignment(Pos.CENTER);
 
 		ImageView logo = new ImageView(new Image("logo.png"));
-		Button startBtn = new Button("Start Game");
-		startBtn.setStyle("-fx-background-color: #FB688E; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-border-radius: 5em; -fx-min-width: 120px; -fx-min-height: 40px;");
+		Button startButton = new Button("Start Game");
+		startButton.setStyle("-fx-background-color: #FB688E; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-border-radius: 5em; -fx-min-width: 120px; -fx-min-height: 40px;");
 
-		homepageLayout.getChildren().addAll(logo, startBtn);
+		homepageLayout.getChildren().addAll(logo, startButton);
 
         GridPane root = new GridPane();
 		root.setBackground(new Background(new BackgroundImage(new Image("background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize)));
@@ -83,21 +80,21 @@ public class Main extends Application
     	final GameModel model = new GameModel();
     	DeckView deckView = new DeckView(model);
         DiscardPileView discardPileView = new DiscardPileView(model);
-		Button newGameBtn = new Button("New Game");
-		Button soundBtn = new Button();
-		newGameBtn.setMaxSize(90,30);
-		newGameBtn.setMinSize(90,30);
-		newGameBtn.setStyle("-fx-background-color: white; -fx-text-fill: #36469B; -fx-background-radius: 5em;");
+		Button newGameButton = new Button("New Game");
+		Button soundButton = new Button();
+		newGameButton.setMaxSize(90,30);
+		newGameButton.setMinSize(90,30);
+		newGameButton.setStyle("-fx-background-color: white; -fx-text-fill: #36469B; -fx-background-radius: 5em;");
 		ImageView soundImg = new ImageView(ClassLoader.getSystemResource("icons8-sound-50.png").toString());
 		ImageView muteImg = new ImageView(ClassLoader.getSystemResource("icons8-mute-50.png").toString());
 		soundImg.setFitWidth(30);
 		soundImg.setFitHeight(30);
 		muteImg.setFitWidth(30);
 		muteImg.setFitHeight(30);
-		soundBtn.setGraphic(soundImg);
-		soundBtn.setAlignment(Pos.CENTER);
+		soundButton.setGraphic(soundImg);
+		soundButton.setAlignment(Pos.CENTER);
 
-		soundBtn.setStyle("-fx-background-color: transparent, transparent, transparent, transparent, transparent;" +
+		soundButton.setStyle("-fx-background-color: transparent, transparent, transparent, transparent, transparent;" +
 				"    -fx-pref-height: 30;" +
 				"    -fx-pref-width: 30;" +
 				"    -fx-min-height: 30;" +
@@ -105,9 +102,9 @@ public class Main extends Application
 				"    -fx-max-height: 30;" +
 				"    -fx-max-width: 30;");
 
-		root.add(soundBtn, 0, 0);
-		GridPane.setMargin(soundBtn, new Insets(0, 0, 0, 6));
-		root.add(newGameBtn, 6, 0);
+		root.add(soundButton, 0, 0);
+		GridPane.setMargin(soundButton, new Insets(0, 0, 0, 6));
+		root.add(newGameButton, 6, 0);
         root.add(deckView, 0, 1);
         root.add(discardPileView, 1, 1);
 		
@@ -134,7 +131,7 @@ public class Main extends Application
 			}
 		});
 
-		newGameBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		newGameButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent pEvent) {
 				try {
@@ -150,7 +147,7 @@ public class Main extends Application
 			}
 		});
 
-		newGameBtn.setOnMouseReleased(new EventHandler<MouseEvent>(){
+		newGameButton.setOnMouseReleased(new EventHandler<MouseEvent>(){
 			@Override
 			public void handle(MouseEvent pEvent){
 				giveUpSound.startPlay();
@@ -159,32 +156,32 @@ public class Main extends Application
 			}
 		});
 
-		newGameBtn.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
+		newGameButton.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				newGameBtn.setStyle("-fx-background-color: #FB688E; -fx-background-radius: 5em; -fx-text-fill: white;");
-				if(model.isCompleted())newGameBtn.setText("again?");
-				else newGameBtn.setText("don't give up");
+				newGameButton.setStyle("-fx-background-color: #FB688E; -fx-background-radius: 5em; -fx-text-fill: white;");
+				if(model.isCompleted())newGameButton.setText("again?");
+				else newGameButton.setText("don't give up");
 			}
 		});
 
-		newGameBtn.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
+		newGameButton.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				newGameBtn.setStyle("-fx-background-color: white; -fx-background-radius: 5em; -fx-text-fill: #36469B;");
-				newGameBtn.setText("New Game");
+				newGameButton.setStyle("-fx-background-color: white; -fx-background-radius: 5em; -fx-text-fill: #36469B;");
+				newGameButton.setText("New Game");
 			}
 		});
 
-		startBtn.setOnMouseEntered(e -> {
-			startBtn.setStyle("-fx-background-color: white; -fx-background-radius: 5em; -fx-text-fill: #FB688E; -fx-font-size: 16px; -fx-border-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-min-width: 120px; -fx-min-height: 40px;");
+		startButton.setOnMouseEntered(e -> {
+			startButton.setStyle("-fx-background-color: white; -fx-background-radius: 5em; -fx-text-fill: #FB688E; -fx-font-size: 16px; -fx-border-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-min-width: 120px; -fx-min-height: 40px;");
 		});
 
-		startBtn.setOnMouseExited(e -> {
-			startBtn.setStyle("-fx-background-color: #FB688E; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-border-radius: 5em; -fx-min-width: 120px; -fx-min-height: 40px;");
+		startButton.setOnMouseExited(e -> {
+			startButton.setStyle("-fx-background-color: #FB688E; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-border-radius: 5em; -fx-min-width: 120px; -fx-min-height: 40px;");
 		});
 
-		soundBtn.setOnMousePressed(new EventHandler<MouseEvent>()
+		soundButton.setOnMousePressed(new EventHandler<MouseEvent>()
 		{
 			@Override
 			public void handle(MouseEvent pEvent)
@@ -193,22 +190,22 @@ public class Main extends Application
 					if(gameMusic.isPlaying()) {
 						gameMusic.stopPlay();
 					}
-					soundBtn.setGraphic(muteImg);
+					soundButton.setGraphic(muteImg);
 				}
 				else {
 					if(!gameMusic.isPlaying()) {
 						gameMusic.startPlay();
 					}
-					soundBtn.setGraphic(soundImg);
+					soundButton.setGraphic(soundImg);
 				}
 				soundPlaying = !soundPlaying;
 
 			}
 		});
 
-		startBtn.setOnAction(e -> {
-			btnSound.stopPlay();
-			btnSound.startPlay();
+		startButton.setOnAction(e -> {
+			buttonSound.stopPlay();
+			buttonSound.startPlay();
 			pPrimaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
 			homePageSound.stopPlay();
 			gameMusic.startPlay();
