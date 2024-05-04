@@ -36,7 +36,7 @@ public class main extends Application
 	boolean soundPlaying = true;
 	SoundPlayer gameMusic = new SoundPlayer(ClassLoader.getSystemResource("background.mp3").toString());
 	SoundPlayer giveUpSound = new SoundPlayer(ClassLoader.getSystemResource("gameover.wav").toString());
-	SoundPlayer btnSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.wav").toString());
+	SoundPlayer btnSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.mp3").toString());
 	SoundPlayer homePageSound = new SoundPlayer(ClassLoader.getSystemResource("homepage.mp3").toString());
 
 	/**
