@@ -51,8 +51,14 @@ public class SoundPlayer {
     }
 
     public void stopPlay(){
-        mediaPlayer.stop();
-        setPlayingStatus(false);
+        try{
+            mediaPlayer.stop();
+            setPlayingStatus(false);
+        }
+        catch(Exception e){
+            System.out.println("Can't stop playing the music");
+            System.out.println(e);
+        }
     }
 
     public void setVolume(double volume){
