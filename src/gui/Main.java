@@ -92,13 +92,23 @@ public class Main extends Application
 		newGameBtn.setStyle("-fx-background-color: white; -fx-text-fill: #36469B; -fx-background-radius: 5em;");
 		ImageView soundImg = new ImageView(ClassLoader.getSystemResource("icons8-sound-50.png").toString());
 		ImageView muteImg = new ImageView(ClassLoader.getSystemResource("icons8-mute-50.png").toString());
+		ImageView soundImgHover = new ImageView(ClassLoader.getSystemResource("icons8-sound-50-hover.png").toString());
+		ImageView muteImgHover = new ImageView(ClassLoader.getSystemResource("icons8-mute-50-hover.png").toString());
 		ImageView undoImg = new ImageView(ClassLoader.getSystemResource("icons8-undo-96.png").toString());
+		ImageView undoImgHover = new ImageView(ClassLoader.getSystemResource("icons8-undo-96-hover.png").toString());
 		soundImg.setFitWidth(30);
 		soundImg.setFitHeight(30);
 		muteImg.setFitWidth(30);
 		muteImg.setFitHeight(30);
+		soundImgHover.setFitWidth(30);
+		soundImgHover.setFitHeight(30);
+		muteImgHover.setFitWidth(30);
+		muteImgHover.setFitHeight(30);
 		undoImg.setFitWidth(30);
 		undoImg.setFitHeight(30);
+
+		undoImgHover.setFitWidth(30);
+		undoImgHover.setFitHeight(30);
 		soundBtn.setGraphic(soundImg);
 		soundBtn.setAlignment(Pos.CENTER);
 		undoBtn.setGraphic(undoImg);
@@ -181,6 +191,36 @@ public class Main extends Application
 			}
 		});
 
+		undoBtn.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				undoBtn.setGraphic(undoImgHover);
+			}
+		});
+
+		undoBtn.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				undoBtn.setGraphic(undoImg);
+			}
+		});
+
+		soundBtn.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				if(soundPlaying)soundBtn.setGraphic(soundImgHover);
+				else soundBtn.setGraphic(muteImgHover);
+			}
+		});
+
+		soundBtn.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				if(soundPlaying)soundBtn.setGraphic(soundImg);
+				else soundBtn.setGraphic(muteImg);
+			}
+		});
+
 		startBtn.setOnMouseEntered(e -> {
 			startBtn.setStyle("-fx-background-color: white; -fx-background-radius: 5em; -fx-text-fill: #FB688E; -fx-font-size: 16px; -fx-border-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-min-width: 120px; -fx-min-height: 40px;");
 		});
@@ -210,6 +250,7 @@ public class Main extends Application
 
 			}
 		});
+
 		undoBtn.setOnAction(e ->{
 			model.undoLast();
 		});
