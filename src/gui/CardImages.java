@@ -48,7 +48,7 @@ public final class CardImages
 	private static Image loadBackImage()
 	{
 		return new Image(CardImages.class.getClassLoader()
-				.getResourceAsStream( "back.gif" ));
+				.getResourceAsStream("back.jpg"));
 	}
 	
 	/*
@@ -71,7 +71,7 @@ public final class CardImages
 	
 	private static String getFileNameFor( Card pCard )
 	{
-		return String.format("%s-of-%s.gif", pCard.rank().name().toLowerCase(), 
+		return String.format("%s-of-%s.jpg", pCard.rank().name().toLowerCase(),
 				pCard.suit().name().toLowerCase());
 	}
 }
