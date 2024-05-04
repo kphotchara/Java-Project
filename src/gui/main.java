@@ -29,7 +29,7 @@ import org.w3c.dom.ls.LSOutput;
 public class main extends Application
 {
 	private static final int WIDTH = 700;
-	private static final int HEIGHT = 500;
+	private static final int HEIGHT = 600;
 	private static final int MARGIN_OUTER = 10;
 	private static final String TITLE = "Solitaire";
 	private static final String VERSION = "8.8.8";
@@ -61,7 +61,8 @@ public class main extends Application
 		pPrimaryStage.setTitle(TITLE + " " + VERSION);
 
         GridPane root = new GridPane();
-        root.setBackground(new Background(new BackgroundImage(new Image("background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+		BackgroundSize backgroundSize = new BackgroundSize(700, 600, false, false, false, true);
+		root.setBackground(new Background(new BackgroundImage(new Image("background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize)));
         root.setHgap(MARGIN_OUTER);
         root.setVgap(MARGIN_OUTER);
         root.setPadding(new Insets(MARGIN_OUTER));
