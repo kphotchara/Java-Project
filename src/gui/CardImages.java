@@ -61,7 +61,7 @@ public final class CardImages
 		Map<Card, Image> images = new IdentityHashMap<>();
 		while( !deck.isEmpty() )
 		{
-			Card card = deck.draw();
+			Card card = deck.pop();
 			Image image = new Image(CardImages.class.getClassLoader()
 					.getResourceAsStream( getFileNameFor(card) ));
 			images.put(card, image);

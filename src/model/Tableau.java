@@ -43,7 +43,7 @@ class Tableau
 			aPiles.get(TableauPile.values()[i]).clear();
 			for( int j = 0; j < i+1; j++ )
 			{
-				Card card = pDeck.draw();
+				Card card = pDeck.pop();
 				aPiles.get(TableauPile.values()[i]).push(card);
 				if( j == i )
 				{

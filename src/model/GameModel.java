@@ -37,7 +37,7 @@ public final class GameModel implements GameModelView
 		public void perform()
 		{
 			assert !isDeckEmpty();	
-			aDiscard.push(aDeck.draw());
+			aDiscard.push(aDeck.pop());
 			aMoves.push(this);
 			notifyListeners();
 		}

@@ -7,16 +7,16 @@ import java.util.List;
 /**
  * Represents a general-purpose stack of cards.
  */
-public class CardStack implements Iterable<Card>
+public class CardStack extends BaseStack implements Iterable<Card>
 {
-	private final List<Card> aCards;
-	
+	//private final List<Card> aCards;
+
 	/**
 	 * Creates an empty CardStack.
 	 */
 	public CardStack()
 	{
-		aCards = new ArrayList<>();
+		super();
 	}
 	
 	/**
@@ -41,10 +41,11 @@ public class CardStack implements Iterable<Card>
 	 * @pre pCard != null;
 	 * @pre !aCards.contains(pCard)
 	 */
+	@Override
 	public void push(Card pCard)
 	{
-		assert pCard != null && !aCards.contains(pCard);
-		aCards.add(pCard);
+		assert !aCards.contains(pCard);
+		super.push(pCard);
 	}
 	
 	/**
@@ -53,10 +54,10 @@ public class CardStack implements Iterable<Card>
 	 * @return The card on top of the stack.
 	 * @pre !isEmpty()
 	 */
+	@Override
 	public Card pop()
 	{
-		assert !isEmpty();
-		return aCards.remove(aCards.size()-1);
+		return super.pop();
 	}
 	
 	/**
@@ -99,9 +100,10 @@ public class CardStack implements Iterable<Card>
 	/**
 	 * @return True if and only if the stack has no cards in it.
 	 */
+	@Override
 	public boolean isEmpty()
 	{
-		return aCards.size() == 0;
+		return super.isEmpty();
 	}
 	
 	@Override

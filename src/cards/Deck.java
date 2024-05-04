@@ -7,15 +7,16 @@ import java.util.List;
 /**
  * Models a deck of 52 cards.
  */
-public class Deck 
+public class Deck extends BaseStack
 {
-	private CardStack aCards;
-	
+	//private CardStack aCards;llllllll
+
 	/**
 	 * Creates a new deck of 52 cards, shuffled.
 	 */
 	public Deck()
 	{
+		super();
 		shuffle();
 	}
 	
@@ -24,16 +25,16 @@ public class Deck
 	 */
 	public void shuffle()
 	{
-		List<Card> cards = new ArrayList<>();
+		//List<Card> cards = new ArrayList<>();
 		for( Suit suit : Suit.values() )
 		{
             for( Rank rank : Rank.values() )
             {
-                cards.add( Card.get( rank, suit ));
+                aCards.add( Card.get( rank, suit ));
             }
 		}
-		Collections.shuffle(cards);
-		aCards = new CardStack(cards);
+		Collections.shuffle(aCards);
+		//aCards = new CardStack(cards);llll
 	}
 	
 	/**
@@ -41,10 +42,10 @@ public class Deck
 	 * @param pCard The card to place on top of the deck.
 	 * @pre pCard !=null
 	 */
+	@Override
 	public void push(Card pCard)
 	{
-		assert pCard != null;
-		aCards.push(pCard);
+		super.push(pCard);
 	}
 	
 	/**
@@ -52,17 +53,18 @@ public class Deck
 	 * @return The card drawn.
 	 * @pre !isEmpty()
 	 */
-	public Card draw()
+	@Override
+	public Card pop()
 	{
-		assert !isEmpty();
-		return aCards.pop();
+		return super.pop();
 	}
 	
 	/**
 	 * @return True iff there are no cards in the deck.
 	 */
+	@Override
 	public boolean isEmpty()
 	{
-		return aCards.isEmpty();
+		return super.isEmpty();
 	}
 }
