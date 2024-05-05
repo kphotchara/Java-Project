@@ -59,7 +59,7 @@ public class Main extends Application
 		pPrimaryStage.setTitle(TITLE + " " + VERSION);
 
 		VBox homepageLayout = new VBox();
-		BackgroundSize backgroundSize = new BackgroundSize(700, 600, false, false, false, true);
+		BackgroundSize backgroundSize = new BackgroundSize(WIDTH, HEIGHT, false, false, false, true);
 		homepageLayout.setBackground(new Background(new BackgroundImage(new Image("homepage-background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize)));;
 		homepageLayout.setSpacing(10);
 		homepageLayout.setPadding(new Insets(20));
