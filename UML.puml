@@ -226,8 +226,8 @@ class cards.Card {
 - Suit aSuit
 - <<Create>> Card(Rank,Suit)
 + {static} Card get(Rank,Suit)
-+ Rank getArank()
-+ Suit getAsuit()
++ Rank getARank()
++ Suit getASuit()
 + String toString()
 - {static} String titleCase(Enum<?>)
 }
