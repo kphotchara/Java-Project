@@ -29,7 +29,8 @@ public class Main extends Application
 	private static final int MARGIN_OUTER = 10;
 	private static final String TITLE = "Solitaire";
 	private static final String VERSION = "8.8.8";
-	private boolean soundPlaying = true;
+	private boolean isSoundPlaying = true;
+
 	private SoundPlayer gameMusic = new SoundPlayer(
 			ClassLoader.getSystemResource("background.mp3").toString()
 	);
@@ -199,7 +200,7 @@ public class Main extends Application
 				try {
 					Thread.sleep(2500);
 					giveUpSound.stopPlay();
-					if(soundPlaying)gameMusic.startPlay();
+					if(isSoundPlaying)gameMusic.startPlay();
 				}
 				catch (InterruptedException ie){
 					Thread.currentThread().interrupt();
@@ -256,7 +257,7 @@ public class Main extends Application
 		soundButton.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				if(soundPlaying)soundButton.setGraphic(soundImgHover);
+				if(isSoundPlaying)soundButton.setGraphic(soundImgHover);
 				else soundButton.setGraphic(muteImgHover);
 			}
 		});
@@ -264,7 +265,7 @@ public class Main extends Application
 		soundButton.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				if(soundPlaying)soundButton.setGraphic(soundImg);
+				if(isSoundPlaying)soundButton.setGraphic(soundImg);
 				else soundButton.setGraphic(muteImg);
 			}
 		});
@@ -292,7 +293,7 @@ public class Main extends Application
 			@Override
 			public void handle(MouseEvent pEvent)
 			{
-				if(soundPlaying){
+				if(isSoundPlaying){
 					if(gameMusic.isPlaying()) {
 						gameMusic.stopPlay();
 					}
@@ -304,7 +305,7 @@ public class Main extends Application
 					}
 					soundButton.setGraphic(soundImg);
 				}
-				soundPlaying = !soundPlaying;
+				isSoundPlaying = !isSoundPlaying;
 
 			}
 		});
