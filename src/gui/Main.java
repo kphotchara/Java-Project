@@ -318,6 +318,8 @@ public class Main extends Application
 			buttonSound.stopPlay();
 			buttonSound.startPlay();
 			pPrimaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
+			gameMusic.setVolume(0.45);
+			gameMusic.setLoop();
 			homePageSound.stopPlay();
 			gameMusic.startPlay();
 		});
