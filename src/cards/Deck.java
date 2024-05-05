@@ -9,7 +9,6 @@ import java.util.List;
  */
 public class Deck extends BaseStack
 {
-	//private CardStack aCards;llllllll
 
 	/**
 	 * Creates a new deck of 52 cards, shuffled.
