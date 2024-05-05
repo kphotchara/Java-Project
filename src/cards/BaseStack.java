@@ -13,21 +13,20 @@ public class BaseStack {
         aCards = new ArrayList<>();
     }
 
-    public void push(Card pCard)
-    {
+    public void push(Card pCard){
         assert pCard != null;
         aCards.add(pCard);
     }
 
-    public Card pop()
-    {
+    public Card pop(){
         assert !isEmpty();
         return aCards.remove(aCards.size() - 1);
     }
 
+
     public boolean isEmpty()
-        {
-            return aCards.size() == 0;
+    {
+        return aCards.size() == 0;
     }
 
     public void setACards(List<Card> aCards) {

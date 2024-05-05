@@ -58,7 +58,7 @@ public final class Card
 	 * Obtain the rank of the card.
 	 * @return An object representing the rank of the card.
 	 */
-	public Rank rank()
+	public Rank getArank()
 	{
 		return aRank;
 	}
@@ -67,7 +67,7 @@ public final class Card
 	 * Obtain the suit of the card.
 	 * @return An object representing the suit of the card 
 	 */
-	public Suit suit()
+	public Suit getAsuit()
 	{
 		return aSuit;
 	}

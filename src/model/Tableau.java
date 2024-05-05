@@ -69,12 +69,12 @@ class Tableau
 		CardStack pile = aPiles.get(pPile);
 		if( pile.isEmpty() )
 		{
-			return pCard.rank() == Rank.KING;
+			return pCard.getArank() == Rank.KING;
 		}
 		else
 		{ 
-			return pCard.rank().ordinal() == pile.peek().rank().ordinal() - 1 &&
-					!pCard.suit().sameColorAs(pile.peek().suit());
+			return pCard.getArank().ordinal() == pile.peek().getArank().ordinal() - 1 &&
+					!pCard.getAsuit().sameColorAs(pile.peek().getAsuit());
 		}
 	}
 	
@@ -87,7 +87,7 @@ class Tableau
 	public boolean isBottomKing(Card pCard)
 	{
 		assert pCard != null && contains(pCard);
-		return pCard.rank() == Rank.KING && aPiles.get(getPile(pCard)).peek(0) == pCard;
+		return pCard.getArank() == Rank.KING && aPiles.get(getPile(pCard)).peek(0) == pCard;
 	}
 
 	
