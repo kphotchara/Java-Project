@@ -3,16 +3,7 @@ package cards;
 import java.util.EnumMap;
 import java.util.Map;
 
-/**
- * An immutable description of a playing card. This abstraction is designed to
- * be independent of game logic, so it does not provide any service that relies
- * on the knowledge of the rules of any particular game.
- * This class implements the Flyweight design pattern: there can only ever be
- * one instance of a card that represents a specific real-world playing card
- * (such as Ace of Spades). In the absence of serialization and reflection,
- * this ensures that the behavior of the == operator is identical to that of
- * the equals method when two card arguments are provided.
- */
+
 public final class Card
 {
 	private static final Map<Suit, Map<Rank, Card>> CARDS = new EnumMap<>(Suit.class);
