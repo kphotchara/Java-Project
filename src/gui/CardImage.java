@@ -71,7 +71,7 @@ public final class CardImage
 	
 	private static String getFileNameFor( Card pCard )
 	{
-		return String.format("%s-of-%s.jpg", pCard.getArank().name().toLowerCase(),
-				pCard.getAsuit().name().toLowerCase());
+		return String.format("%s-of-%s.jpg", pCard.getARank().name().toLowerCase(),
+				pCard.getASuit().name().toLowerCase());
 	}
 }
