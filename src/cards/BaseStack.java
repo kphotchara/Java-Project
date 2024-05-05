@@ -22,7 +22,7 @@ public class BaseStack {
     public Card pop()
     {
         assert !isEmpty();
-        return aCards.remove(aCards.size()-1);
+        return aCards.remove(aCards.size() - 1);
     }
 
     public boolean isEmpty()

@@ -44,7 +44,7 @@ public final class CardSerializer
 	
 	private static Card intToCard(int pNumber)
 	{
-		assert pNumber >=0 && pNumber < Rank.values().length * 
+		assert pNumber >= 0 && pNumber < Rank.values().length *
 				Suit.values().length;
 		return Card.get(Rank.values()[pNumber % Rank.values().length], 
 				Suit.values()[pNumber / Rank.values().length]);

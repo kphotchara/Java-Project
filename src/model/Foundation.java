@@ -78,7 +78,7 @@ class Foundation
 		else
 		{
 			return pCard.suit() == peek(pLocation).suit() && 
-					pCard.rank().ordinal() == peek(pLocation).rank().ordinal()+1;
+					pCard.rank().ordinal() == peek(pLocation).rank().ordinal() + 1;
 		}
 	}
 	

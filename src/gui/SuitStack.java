@@ -41,7 +41,9 @@ public class SuitStack extends StackPane implements GameModelListener
 	private FoundationPile aIndex;
 	private final GameModel aModel;
 
-	SoundPlayer cardSound = new SoundPlayer(ClassLoader.getSystemResource("card.wav").toString());
+	SoundPlayer cardSound = new SoundPlayer(
+			ClassLoader.getSystemResource("card.wav").toString()
+	);
 	
 	SuitStack(GameModel pModel, FoundationPile pIndex)
 	{

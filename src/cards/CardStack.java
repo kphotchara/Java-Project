@@ -68,7 +68,7 @@ public class CardStack extends BaseStack implements Iterable<Card>
 	public Card peek()
 	{
 		assert !isEmpty();
-		return aCards.get(aCards.size()-1);
+		return aCards.get(aCards.size() - 1);
 	}
 	
 	/**

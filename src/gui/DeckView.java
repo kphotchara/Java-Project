@@ -80,7 +80,7 @@ class DeckView extends HBox implements GameModelListener
 		// The reset image
 		context.setStroke(Color.LAVENDER);
 		context.setLineWidth(IMAGE_NEW_LINE_WIDTH);
-		context.strokeOval(width/4, height/2-width/4 + IMAGE_FONT_SIZE, width/2, width/2);
+		context.strokeOval(width / 4, height / 2 - width / 4 + IMAGE_FONT_SIZE, width / 2, width / 2);
 
 		// The text
 		context.setTextAlign(TextAlignment.CENTER);
@@ -90,11 +90,11 @@ class DeckView extends HBox implements GameModelListener
 		
 		if( aModel.isCompleted() )
 		{
-			context.fillText("You won!", Math.round(width/2), IMAGE_FONT_SIZE);
+			context.fillText("You won!", Math.round(width / 2), IMAGE_FONT_SIZE);
 		}
 		else
 		{
-			context.fillText("Reset Deck", Math.round(width/2), IMAGE_FONT_SIZE);
+			context.fillText("Reset Deck", Math.round(width / 2), IMAGE_FONT_SIZE);
 		}
 		context.setTextAlign(TextAlignment.CENTER);
 		return canvas;

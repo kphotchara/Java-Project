@@ -30,10 +30,18 @@ public class Main extends Application
 	private static final String TITLE = "Solitaire";
 	private static final String VERSION = "8.8.8";
 	private boolean soundPlaying = true;
-	private SoundPlayer gameMusic = new SoundPlayer(ClassLoader.getSystemResource("background.mp3").toString());
-	private SoundPlayer giveUpSound = new SoundPlayer(ClassLoader.getSystemResource("gameover.wav").toString());
-	private SoundPlayer buttonSound = new SoundPlayer(ClassLoader.getSystemResource("btnSound.mp3").toString());
-	private SoundPlayer homePageSound = new SoundPlayer(ClassLoader.getSystemResource("homepage.mp3").toString());
+	private SoundPlayer gameMusic = new SoundPlayer(
+			ClassLoader.getSystemResource("background.mp3").toString()
+	);
+	private SoundPlayer giveUpSound = new SoundPlayer(
+			ClassLoader.getSystemResource("gameover.wav").toString()
+	);
+	private SoundPlayer buttonSound = new SoundPlayer(
+			ClassLoader.getSystemResource("btnSound.mp3").toString()
+	);
+	private SoundPlayer homePageSound = new SoundPlayer(
+			ClassLoader.getSystemResource("homepage.mp3").toString()
+	);
 
 	/**
 	 * Application head.
@@ -59,20 +67,43 @@ public class Main extends Application
 		pPrimaryStage.setTitle(TITLE + " " + VERSION);
 
 		VBox homepageLayout = new VBox();
-		BackgroundSize backgroundSize = new BackgroundSize(WIDTH, HEIGHT, false, false, false, true);
-		homepageLayout.setBackground(new Background(new BackgroundImage(new Image("homepage-background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize)));;
+		BackgroundSize backgroundSize = new BackgroundSize(
+				WIDTH, HEIGHT, false, false, false, true
+		);
+		homepageLayout.setBackground(new Background(
+				new BackgroundImage(
+						new Image("homepage-background.jpg"),
+						BackgroundRepeat.NO_REPEAT,
+						BackgroundRepeat.NO_REPEAT,
+						BackgroundPosition.CENTER,
+						backgroundSize
+				)));;
 		homepageLayout.setSpacing(10);
 		homepageLayout.setPadding(new Insets(20));
 		homepageLayout.setAlignment(Pos.CENTER);
 
 		ImageView logo = new ImageView(new Image("logo.png"));
 		Button startButton = new Button("Start Game");
-		startButton.setStyle("-fx-background-color: #FB688E; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-border-radius: 5em; -fx-min-width: 120px; -fx-min-height: 40px;");
+		startButton.setStyle(
+				"-fx-background-color: #FB688E; -fx-text-fill: white; " +
+				"-fx-font-size: 16px; -fx-background-radius: 5em; " +
+				"-fx-padding: 5px 20px; -fx-border-color: #FB688E; " +
+				"-fx-border-radius: 5em; -fx-min-width: 120px; " +
+				"-fx-min-height: 40px;"
+		);
 
 		homepageLayout.getChildren().addAll(logo, startButton);
 
 		GridPane root = new GridPane();
-		root.setBackground(new Background(new BackgroundImage(new Image("background.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize)));
+		root.setBackground(new Background(
+				new BackgroundImage(
+						new Image("background.jpg"),
+						BackgroundRepeat.NO_REPEAT,
+						BackgroundRepeat.NO_REPEAT,
+						BackgroundPosition.CENTER,
+						backgroundSize
+				)));
+
 		root.setHgap(MARGIN_OUTER);
 		root.setVgap(MARGIN_OUTER);
 		root.setPadding(new Insets(MARGIN_OUTER));
@@ -85,13 +116,28 @@ public class Main extends Application
 		Button undoButton = new Button();
 		newGameButton.setMaxSize(90,30);
 		newGameButton.setMinSize(90,30);
-		newGameButton.setStyle("-fx-background-color: white; -fx-text-fill: #36469B; -fx-background-radius: 5em;");
-		ImageView soundImg = new ImageView(ClassLoader.getSystemResource("icons8-sound-50.png").toString());
-		ImageView muteImg = new ImageView(ClassLoader.getSystemResource("icons8-mute-50.png").toString());
-		ImageView soundImgHover = new ImageView(ClassLoader.getSystemResource("icons8-sound-50-hover.png").toString());
-		ImageView muteImgHover = new ImageView(ClassLoader.getSystemResource("icons8-mute-50-hover.png").toString());
-		ImageView undoImg = new ImageView(ClassLoader.getSystemResource("icons8-undo-96.png").toString());
-		ImageView undoImgHover = new ImageView(ClassLoader.getSystemResource("icons8-undo-96-hover.png").toString());
+		newGameButton.setStyle("-fx-background-color: white; " +
+				"-fx-text-fill: #36469B; -fx-background-radius: 5em;"
+		);
+		ImageView soundImg = new ImageView(
+				ClassLoader.getSystemResource("icons8-sound-50.png").toString()
+		);
+		ImageView muteImg = new ImageView(
+				ClassLoader.getSystemResource("icons8-mute-50.png").toString()
+		);
+		ImageView soundImgHover = new ImageView(
+				ClassLoader.getSystemResource("icons8-sound-50-hover.png").toString()
+		);
+		ImageView muteImgHover = new ImageView(
+				ClassLoader.getSystemResource("icons8-mute-50-hover.png").toString()
+		);
+		ImageView undoImg = new ImageView(
+				ClassLoader.getSystemResource("icons8-undo-96.png").toString()
+		);
+		ImageView undoImgHover = new ImageView(
+				ClassLoader.getSystemResource("icons8-undo-96-hover.png").toString()
+		);
+
 		soundImg.setFitWidth(30);
 		soundImg.setFitHeight(30);
 		muteImg.setFitWidth(30);
@@ -117,14 +163,16 @@ public class Main extends Application
 				"    -fx-min-height: 30;" +
 				"    -fx-min-width: 30;" +
 				"    -fx-max-height: 30;" +
-				"    -fx-max-width: 30;");
+				"    -fx-max-width: 30;"
+		);
 		undoButton.setStyle("-fx-background-color: transparent, transparent, transparent, transparent, transparent;" +
 				"    -fx-pref-height: 30;" +
 				"    -fx-pref-width: 30;" +
 				"    -fx-min-height: 30;" +
 				"    -fx-min-width: 30;" +
 				"    -fx-max-height: 30;" +
-				"    -fx-max-width: 30;");
+				"    -fx-max-width: 30;"
+		);
 
 
 		root.add(soundButton, 0, 0);
@@ -136,7 +184,7 @@ public class Main extends Application
 
 		for( FoundationPile index : FoundationPile.values() )
 		{
-			root.add(new SuitStack(model, index), 3+index.ordinal(), 1);
+			root.add(new SuitStack(model, index), 3 + index.ordinal(), 1);
 		}
 
 		for( TableauPile index : TableauPile.values() )
@@ -173,7 +221,9 @@ public class Main extends Application
 		newGameButton.onMouseMovedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				newGameButton.setStyle("-fx-background-color: #FB688E; -fx-background-radius: 5em; -fx-text-fill: white;");
+				newGameButton.setStyle("-fx-background-color: #FB688E; " +
+						"-fx-background-radius: 5em; -fx-text-fill: white;"
+				);
 				if(model.isCompleted())newGameButton.setText("again?");
 				else newGameButton.setText("don't give up");
 			}
@@ -182,7 +232,9 @@ public class Main extends Application
 		newGameButton.onMouseExitedProperty().set(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				newGameButton.setStyle("-fx-background-color: white; -fx-background-radius: 5em; -fx-text-fill: #36469B;");
+				newGameButton.setStyle("-fx-background-color: white; " +
+						"-fx-background-radius: 5em; -fx-text-fill: #36469B;"
+				);
 				newGameButton.setText("New Game");
 			}
 		});
@@ -218,11 +270,21 @@ public class Main extends Application
 		});
 
 		startButton.setOnMouseEntered(e -> {
-			startButton.setStyle("-fx-background-color: white; -fx-background-radius: 5em; -fx-text-fill: #FB688E; -fx-font-size: 16px; -fx-border-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-min-width: 120px; -fx-min-height: 40px;");
+			startButton.setStyle("-fx-background-color: white; " +
+					"-fx-background-radius: 5em; -fx-text-fill: #FB688E; " +
+					"-fx-font-size: 16px; -fx-border-radius: 5em; " +
+					"-fx-padding: 5px 20px; -fx-border-color: #FB688E;" +
+					" -fx-min-width: 120px; -fx-min-height: 40px;"
+			);
 		});
 
 		startButton.setOnMouseExited(e -> {
-			startButton.setStyle("-fx-background-color: #FB688E; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 5em; -fx-padding: 5px 20px; -fx-border-color: #FB688E; -fx-border-radius: 5em; -fx-min-width: 120px; -fx-min-height: 40px;");
+			startButton.setStyle("-fx-background-color: #FB688E; " +
+					"-fx-text-fill: white; -fx-font-size: 16px; " +
+					"-fx-background-radius: 5em; -fx-padding: 5px 20px; " +
+					"-fx-border-color: #FB688E; -fx-border-radius: 5em; " +
+					"-fx-min-width: 120px; -fx-min-height: 40px;"
+			);
 		});
 
 		soundButton.setOnMousePressed(new EventHandler<MouseEvent>()

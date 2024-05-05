@@ -33,7 +33,7 @@ public class CompositeMove implements Move
 	@Override
 	public void undo()
 	{
-		for( int i = aMoves.size()-1; i >=0; i-- )
+		for( int i = aMoves.size() - 1; i >= 0; i-- )
 		{
 			aMoves.get(i).undo();
 		}

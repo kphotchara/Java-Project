@@ -41,7 +41,7 @@ class Tableau
 		for( int i = 0; i < TableauPile.values().length; i++ )
 		{
 			aPiles.get(TableauPile.values()[i]).clear();
-			for( int j = 0; j < i+1; j++ )
+			for( int j = 0; j < i + 1; j++ )
 			{
 				Card card = pDeck.pop();
 				aPiles.get(TableauPile.values()[i]).push(card);
@@ -73,7 +73,7 @@ class Tableau
 		}
 		else
 		{ 
-			return pCard.rank().ordinal() == pile.peek().rank().ordinal()-1 && 
+			return pCard.rank().ordinal() == pile.peek().rank().ordinal() - 1 &&
 					!pCard.suit().sameColorAs(pile.peek().suit());
 		}
 	}
