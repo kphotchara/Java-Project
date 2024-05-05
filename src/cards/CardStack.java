@@ -118,4 +118,14 @@ public class CardStack extends BaseStack implements Iterable<Card>
 	{
 		return aCards.iterator();
 	}
+
+	@Override
+	public List<Card> getACards() {
+		return super.getACards();
+	}
+
+	@Override
+	public void setACards(List<Card> aCards) {
+		super.setACards(aCards);
+	}
 }

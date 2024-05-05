@@ -26,11 +26,15 @@ public class BaseStack {
     }
 
     public boolean isEmpty()
-    {
-        return aCards.size() == 0;
+        {
+            return aCards.size() == 0;
     }
 
     public void setACards(List<Card> aCards) {
         this.aCards = aCards;
+    }
+
+    public List<Card> getACards() {
+        return aCards;
     }
 }
