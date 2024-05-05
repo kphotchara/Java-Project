@@ -3,6 +3,9 @@ package cards;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A Base stack to create base function of a stack card
+ */
 public class BaseStack {
     protected List<Card> aCards;
 
